@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        if(usernameInput.getText().equals("admin")  && passwordInput.getText().equals("123")){
+        if(usernameInput.getText().toString().equals("admin")  && passwordInput.getText().toString().equals("123")){
             Intent intent = new Intent(MainActivity.this, MainActivity2.class);
             startActivity(intent);
         }else{
