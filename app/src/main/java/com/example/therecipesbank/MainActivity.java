@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String username = "admin";
-    private static final String password = "123";
+    private static final String username = "";
+    private static final String password = "";
     EditText usernameInput, passwordInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        if(usernameInput.getText().toString().equals("admin")  && passwordInput.getText().toString().equals("123")){
-            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        if(usernameInput.getText().toString().equals(username)  && passwordInput.getText().toString().equals(password)){
+            Intent intent = new Intent(MainActivity.this, Home.class);
             startActivity(intent);
         }else{
             Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();

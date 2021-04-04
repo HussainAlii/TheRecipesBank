@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_path"
+    app:startDestination="@id/popular">
+
+    <fragment
+        android:id="@+id/popular"
+        android:name="com.example.therecipesbank.Popular"
+        android:label="fragment_popular"
+        tools:layout="@layout/fragment_popular" >
+        <action
+            android:id="@+id/action_popular_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_popular_to_favList"
+            app:destination="@id/favList" />
+        <action
+            android:id="@+id/action_popular_to_createRes"
+            app:destination="@id/createRes" />
+    </fragment>
+    <fragment
+        android:id="@+id/favList"
+        android:name="com.example.therecipesbank.favList"
+        android:label="fragment_fav_list"
+        tools:layout="@layout/fragment_fav_list" >
+        <action
+            android:id="@+id/action_favList_to_popular"
+            app:destination="@id/popular" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.therecipesbank.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_popular"
+            app:destination="@id/popular" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRes"
+        android:name="com.example.therecipesbank.createRes"
+        android:label="fragment_create_res"
+        tools:layout="@layout/fragment_create_res" >
+        <action
+            android:id="@+id/action_createRes_to_popular"
+            app:destination="@id/popular" />
+    </fragment>
+</navigation>
