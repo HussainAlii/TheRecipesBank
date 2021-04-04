@@ -18,7 +18,9 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+
+        </ListView>
 
     </LinearLayout>
 
@@ -26,41 +28,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_weight="16">
+        android:layout_weight="19">
 
         <androidx.gridlayout.widget.GridLayout
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:background="@android:color/darker_gray">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Fav"
-                android:textSize="14sp"
-                app:layout_column="0"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:drawableBottom="@drawable/heart"
+                app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
                 app:layout_rowWeight="1"
-                />
+                android:layout_marginBottom="1dp"/>
+
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Popular"
-                android:textSize="14sp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:drawableBottom="@drawable/trend"
+                app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
-                app:layout_rowWeight="1"
-                />
+                app:layout_rowWeight="1" />
+
+            <Button
+                android:id="@+id/btnDownloadPdf"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:drawableBottom="@drawable/plus"
+                app:iconGravity="textStart"
+                app:layout_columnWeight="1"
+                app:layout_row="0"
+                app:layout_rowWeight="1" />
+
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Profile"
-                app:layout_column="2"
-                android:textSize="14sp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:drawableBottom="@drawable/sub"
+                app:iconGravity="textStart"
+                app:layout_columnWeight="1"
+                app:layout_row="0"
+                app:layout_rowWeight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:drawableBottom="@drawable/user"
+                app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
                 app:layout_rowWeight="1" />
