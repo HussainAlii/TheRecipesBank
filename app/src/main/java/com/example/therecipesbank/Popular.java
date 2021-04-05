@@ -103,11 +103,5 @@ public class Popular extends Fragment {
             }
         });
 
-//        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.);
-//            }
-//        });
     }
 }

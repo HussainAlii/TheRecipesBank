@@ -65,47 +65,5 @@ public class favList extends Fragment {
         return inflater.inflate(R.layout.fragment_fav_list, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
-
-        final NavController navController = Navigation.findNavController(getActivity(),
-                R.id.nav_host_fragment);
-
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_favList_to_profile);
-            }
-        });
-
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_favList_to_createRes);
-            }
-        });
-
-//        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_favList_to_favList);
-//            }
-//        });
-
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_favList_to_myChefs);
-            }
-        });
-
-        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_favList_to_popular);
-            }
-        });
-    }
 }
