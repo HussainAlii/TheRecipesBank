@@ -69,11 +69,11 @@ public class favList extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button profileButton = view.findViewById(R.id.profileButton);
-        Button createButton = view.findViewById(R.id.createButton);
-        Button favButton = view.findViewById(R.id.favButton);
-        Button myChefsButton = view.findViewById(R.id.myChefsButton);
-        Button trendsButton = view.findViewById(R.id.trendsButton);
+        Button profileButton = view.findViewById(R.id.favList_profileButton);
+        Button createButton = view.findViewById(R.id.favList_createButton);
+        Button favButton = view.findViewById(R.id.favList_favButton);
+        Button myChefsButton = view.findViewById(R.id.favList_myChefsButton);
+        Button trendsButton = view.findViewById(R.id.favList_trendsButton);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
