@@ -11,14 +11,17 @@
         android:label="fragment_popular"
         tools:layout="@layout/fragment_popular" >
         <action
+            android:id="@+id/action_popular_to_createRes"
+            app:destination="@id/createRes" />
+        <action
+            android:id="@+id/action_popular_to_myChefs"
+            app:destination="@id/myChefs" />
+        <action
             android:id="@+id/action_popular_to_profile"
             app:destination="@id/profile" />
         <action
             android:id="@+id/action_popular_to_favList"
             app:destination="@id/favList" />
-        <action
-            android:id="@+id/action_popular_to_createRes"
-            app:destination="@id/createRes" />
     </fragment>
     <fragment
         android:id="@+id/favList"
@@ -45,6 +48,15 @@
         tools:layout="@layout/fragment_create_res" >
         <action
             android:id="@+id/action_createRes_to_popular"
+            app:destination="@id/popular" />
+    </fragment>
+    <fragment
+        android:id="@+id/myChefs"
+        android:name="com.example.therecipesbank.myChefs"
+        android:label="fragment_my_chefs"
+        tools:layout="@layout/fragment_my_chefs" >
+        <action
+            android:id="@+id/action_myChefs_to_popular"
             app:destination="@id/popular" />
     </fragment>
 </navigation>
