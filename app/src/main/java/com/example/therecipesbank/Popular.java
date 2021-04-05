@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 /**
@@ -79,10 +80,11 @@ public class Popular extends Fragment {
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
         Button trendsButton = view.findViewById(R.id.popular_trendsButton);
 
-        ListView trendList = view.findViewById(R.id.trendsList);
         String foodList []= {"Apple","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line,foodList);
-        trendList.setAdapter(adapter);
+
+        ListAdapter theAdapter = new myAdapter(getContext(), foodList);
+        ListView trendList = view.findViewById(R.id.trendsList);
+        trendList.setAdapter(theAdapter);
 
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
