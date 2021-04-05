@@ -14,7 +14,7 @@ tools:context=".MainActivity">
     android:id="@+id/imageView1" />
 
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="1.6in"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
@@ -36,6 +36,28 @@ tools:context=".MainActivity">
         android:text="This is a nice food, that is created by me..."
         android:paddingLeft="10dp" />
 </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/heart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/likes"
+            android:textSize="11sp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="99999" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
