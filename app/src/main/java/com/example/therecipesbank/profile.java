@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,6 +71,11 @@ public class profile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Button profileButton = view.findViewById(R.id.profileButton);
+        Button createButton = view.findViewById(R.id.createButton);
+        Button favButton = view.findViewById(R.id.favButton);
+        Button myChefsButton = view.findViewById(R.id.myChefsButton);
+        Button trendsButton = view.findViewById(R.id.trendsButton);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
@@ -81,28 +87,28 @@ public class profile extends Fragment {
 //            }
 //        });
 
-        Home.createButton.setOnClickListener(new View.OnClickListener() {
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_createRes);
             }
         });
 
-        Home.favButton.setOnClickListener(new View.OnClickListener() {
+        favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_favList);
             }
         });
 
-        Home.myChefsButton.setOnClickListener(new View.OnClickListener() {
+        myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_myChefs);
             }
         });
 
-        Home.trendsButton.setOnClickListener(new View.OnClickListener() {
+        trendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_popular);
