@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_popular_to_createRes"
             app:destination="@id/createRes" />
+        <action
+            android:id="@+id/action_popular_to_myChefs"
+            app:destination="@id/myChefs" />
     </fragment>
     <fragment
         android:id="@+id/favList"
@@ -28,6 +31,15 @@
         <action
             android:id="@+id/action_favList_to_popular"
             app:destination="@id/popular" />
+        <action
+            android:id="@+id/action_favList_to_createRes"
+            app:destination="@id/createRes" />
+        <action
+            android:id="@+id/action_favList_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_favList_to_myChefs"
+            app:destination="@id/myChefs" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -37,6 +49,15 @@
         <action
             android:id="@+id/action_profile_to_popular"
             app:destination="@id/popular" />
+        <action
+            android:id="@+id/action_profile_to_createRes"
+            app:destination="@id/createRes" />
+        <action
+            android:id="@+id/action_profile_to_favList"
+            app:destination="@id/favList" />
+        <action
+            android:id="@+id/action_profile_to_myChefs"
+            app:destination="@id/myChefs" />
     </fragment>
     <fragment
         android:id="@+id/createRes"
@@ -46,5 +67,32 @@
         <action
             android:id="@+id/action_createRes_to_popular"
             app:destination="@id/popular" />
+        <action
+            android:id="@+id/action_createRes_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_createRes_to_favList"
+            app:destination="@id/favList" />
+        <action
+            android:id="@+id/action_createRes_to_myChefs"
+            app:destination="@id/myChefs" />
+    </fragment>
+    <fragment
+        android:id="@+id/myChefs"
+        android:name="com.example.therecipesbank.myChefs"
+        android:label="fragment_my_chefs"
+        tools:layout="@layout/fragment_my_chefs" >
+        <action
+            android:id="@+id/action_myChefs_to_popular"
+            app:destination="@id/popular" />
+        <action
+            android:id="@+id/action_myChefs_to_favList"
+            app:destination="@id/favList" />
+        <action
+            android:id="@+id/action_myChefs_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_myChefs_to_createRes"
+            app:destination="@id/createRes" />
     </fragment>
 </navigation>

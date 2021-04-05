@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kitchens"
-    tools:context=".MainActivity">
+    android:background="@drawable/kitchens3"
+    tools:context=".RegisterActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -15,7 +15,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textColor="@android:color/white"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_border"
         android:hint="@string/email"
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_border"
         android:hint="@string/password"
@@ -59,38 +59,27 @@
         android:textColorHint="@color/grey"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/repeatPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/Register"
+        android:background="@drawable/rounded_border"
+        android:hint="@string/repPassword"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textColorHint="@color/grey"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
-
-    <TextView
-        android:id="@+id/loginError"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:maxLines="3"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#B00020"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <Button
@@ -99,19 +88,19 @@
         android:layout_height="55dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_border"
-        android:onClick="login"
-        android:text="@string/log_in"
+        android:onClick="Register"
+        android:text="@string/log_in_R"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginError" />
-
+        app:layout_constraintTop_toBottomOf="@+id/repeatPassword"
+        tools:ignore="OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

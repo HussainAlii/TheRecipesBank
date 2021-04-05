@@ -11,14 +11,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Popular#newInstance} factory method to
+ * Use the {@link myChefs#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Popular extends Fragment {
+public class myChefs extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +28,7 @@ public class Popular extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Popular() {
+    public myChefs() {
         // Required empty public constructor
     }
 
@@ -39,11 +38,11 @@ public class Popular extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Popular.
+     * @return A new instance of fragment myChefs.
      */
     // TODO: Rename and change types and number of parameters
-    public static Popular newInstance(String param1, String param2) {
-        Popular fragment = new Popular();
+    public static myChefs newInstance(String param1, String param2) {
+        myChefs fragment = new myChefs();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +63,7 @@ public class Popular extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popular, container, false);
+        return inflater.inflate(R.layout.fragment_my_chefs, container, false);
     }
 
     @Override
@@ -78,36 +77,36 @@ public class Popular extends Fragment {
         view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_popular_to_profile);
+                navController.navigate(R.id.action_myChefs_to_profile);
             }
         });
 
         view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_popular_to_createRes);
+                navController.navigate(R.id.action_myChefs_to_createRes);
             }
         });
 
         view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_popular_to_favList);
+                navController.navigate(R.id.action_myChefs_to_favList);
             }
         });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_popular_to_myChefs);
-            }
-        });
-
-//        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+//        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                navController.navigate(R.id.);
+//                navController.navigate(R.id.action_myChefs_to_myChefs);
 //            }
 //        });
+
+        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_myChefs_to_popular);
+            }
+        });
     }
 }

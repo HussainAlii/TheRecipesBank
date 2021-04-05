@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".Popular">
+    tools:context=".myChefs">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,7 +18,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
         </ListView>
 
@@ -27,8 +27,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="19">
+        android:layout_weight="19"
+        android:orientation="horizontal">
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="0dp"
@@ -37,41 +37,35 @@
             android:background="@android:color/darker_gray">
 
             <Button
-                android:id="@+id/trendsButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:drawableBottom="@drawable/trend"
+                android:gravity="center"
+                android:textAllCaps="true"
                 app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
-                app:layout_rowWeight="1"
-                android:layout_marginBottom="1dp"/>
+                app:layout_rowWeight="1" />
 
             <Button
-                android:id="@+id/favButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:drawableBottom="@drawable/heart"
+                android:gravity="center"
+                android:textAllCaps="true"
                 app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
-                app:layout_rowWeight="1"
-                />
-
-
+                app:layout_rowWeight="1" />
 
 
             <Button
-                android:id="@+id/createButton"
+                android:id="@+id/btnDownloadPdf"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:drawableBottom="@drawable/plus"
+                android:gravity="center"
+                android:textAllCaps="true"
                 app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
@@ -79,29 +73,28 @@
 
 
             <Button
-                android:id="@+id/myChefsButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:drawableBottom="@drawable/sub"
-                app:iconGravity="textStart"
-                app:layout_columnWeight="1"
-                app:layout_row="0"
-                app:layout_rowWeight="1" />
-
-            <Button
-                android:id="@+id/profileButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 android:gravity="center"
                 android:textAllCaps="true"
-                android:drawableBottom="@drawable/user"
                 app:iconGravity="textStart"
                 app:layout_columnWeight="1"
                 app:layout_row="0"
                 app:layout_rowWeight="1"
+                android:layout_marginBottom="1dp"
                 />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:drawableBottom="@drawable/user"
+                android:gravity="center"
+                android:textAllCaps="true"
+                app:iconGravity="textStart"
+                app:layout_columnWeight="1"
+                app:layout_row="0"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
 

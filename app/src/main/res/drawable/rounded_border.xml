@@ -11,4 +11,9 @@
         android:left="20dp"
         android:right="20dp"
         android:top="10dp" />
+
+    <gradient android:angle="270"
+        android:centerColor="#90150517"
+        android:endColor="#90150517"
+        android:startColor="#90150517" />
 </shape>
