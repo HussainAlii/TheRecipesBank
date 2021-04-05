@@ -88,21 +88,21 @@ public class profile extends Fragment {
             }
         });
 
-        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+        Home.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_favList);
             }
         });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
+        Home.myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_myChefs);
             }
         });
 
-        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+        Home.trendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_popular);

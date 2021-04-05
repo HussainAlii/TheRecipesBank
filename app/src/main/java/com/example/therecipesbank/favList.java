@@ -73,14 +73,14 @@ public class favList extends Fragment {
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+        Home.profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_favList_to_profile);
             }
         });
 
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
+        Home.createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_favList_to_createRes);
@@ -94,14 +94,14 @@ public class favList extends Fragment {
 //            }
 //        });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
+        Home.myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_favList_to_myChefs);
             }
         });
 
-        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+        Home.trendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_favList_to_popular);

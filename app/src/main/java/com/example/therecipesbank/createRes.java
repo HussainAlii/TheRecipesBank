@@ -74,7 +74,7 @@ public class createRes extends Fragment {
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+        Home.profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_profile);
@@ -88,21 +88,21 @@ public class createRes extends Fragment {
 //            }
 //        });
 
-        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+        Home.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_favList);
             }
         });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
+        Home.myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_myChefs);
             }
         });
 
-        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+        Home.trendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_popular);

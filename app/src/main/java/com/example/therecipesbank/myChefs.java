@@ -74,21 +74,21 @@ public class myChefs extends Fragment {
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+        Home.profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_myChefs_to_profile);
             }
         });
 
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
+        Home.createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_myChefs_to_createRes);
             }
         });
 
-        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+        Home.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_myChefs_to_favList);
@@ -102,7 +102,7 @@ public class myChefs extends Fragment {
 //            }
 //        });
 
-        view.findViewById(R.id.trendsButton).setOnClickListener(new View.OnClickListener() {
+        Home.trendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_myChefs_to_popular);
