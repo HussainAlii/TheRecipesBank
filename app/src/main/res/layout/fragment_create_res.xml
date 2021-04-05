@@ -9,20 +9,97 @@
     tools:context=".createRes">
 
     <!-- TODO: Update blank fragment layout -->
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="25dp">
 
-        <ListView
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Enter Recipy title:"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="serif"/>
+        <EditText
+            android:layout_marginTop="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Recipy title"
+            android:textSize="20dp"
+            android:id="@+id/RTitile"
+            android:background="@drawable/roundedbor"
+            android:shadowColor="@android:color/white"/>
 
-        </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descripe_your_recipy"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp"
+            android:fontFamily="serif"
+            android:textColor="@color/colorPrimary"/>
+
+        <EditText
+            android:id="@+id/RDesc"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/roundedbor"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Provide a Picture:"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="serif"
+            android:textColor="@color/colorPrimary"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Enter Recipy title"
+            android:layout_marginTop="28dp"
+            android:id="@+id/RImg"/>
+
+        <Button
+            android:id="@+id/RConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/confirm_border"
+            android:onClick=""
+            android:text="Confirm"
+            android:fontFamily="serif"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginError" />
+
+
+
 
     </LinearLayout>
+</ScrollView>
+
 
     <LinearLayout
         android:layout_width="match_parent"
