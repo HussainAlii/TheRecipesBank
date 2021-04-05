@@ -81,7 +81,7 @@ public class profile extends Fragment {
 //            }
 //        });
 
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
+        Home.createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_createRes);

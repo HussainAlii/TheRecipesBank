@@ -71,32 +71,30 @@ public class Popular extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
-        final NavController navController = Navigation.findNavController(getActivity(),
-                R.id.nav_host_fragment);
-
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+        Home.profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_profile);
             }
         });
 
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
+        Home.createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_createRes);
             }
         });
 
-        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+        Home.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_favList);
             }
         });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
+       Home.myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_myChefs);
