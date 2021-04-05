@@ -37,6 +37,7 @@
             android:background="@android:color/darker_gray">
 
             <Button
+                android:id="@+id/myChefs_trendsButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/trend"
@@ -48,6 +49,7 @@
                 app:layout_rowWeight="1" />
 
             <Button
+                android:id="@+id/myChefs_favButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/heart"
@@ -60,6 +62,7 @@
 
 
             <Button
+                android:id="@+id/myChefs_createButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/plus"
@@ -72,6 +75,7 @@
 
 
             <Button
+                android:id="@+id/myChefs_myChefsButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/sub"
@@ -85,6 +89,7 @@
                 />
 
             <Button
+                android:id="@+id/myChefs_profileButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/user"
