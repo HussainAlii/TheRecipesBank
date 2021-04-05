@@ -11,8 +11,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +82,19 @@ public class Popular extends Fragment {
         Button favButton = view.findViewById(R.id.popular_favButton);
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
         Button trendsButton = view.findViewById(R.id.popular_trendsButton);
+
+        String foodList []= {"Apple","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate"};
+
+        ListAdapter theAdapter = new myAdapter(getContext(), foodList);
+        ListView trendList = view.findViewById(R.id.trendsList);
+        trendList.setAdapter(theAdapter);
+
+        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //adapterView.getItemAtPosition(position)
+            }
+        });
 
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 

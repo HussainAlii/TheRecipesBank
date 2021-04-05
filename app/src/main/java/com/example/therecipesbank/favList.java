@@ -10,7 +10,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,6 +78,19 @@ public class favList extends Fragment {
         Button favButton = view.findViewById(R.id.favList_favButton);
         Button myChefsButton = view.findViewById(R.id.favList_myChefsButton);
         Button trendsButton = view.findViewById(R.id.favList_trendsButton);
+
+        String foodList []= {"Apple","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate"};
+
+        ListAdapter theAdapter = new myAdapter(getContext(), foodList);
+        ListView trendList = view.findViewById(R.id.favList_List);
+        trendList.setAdapter(theAdapter);
+
+        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //adapterView.getItemAtPosition(position)
+            }
+        });
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
