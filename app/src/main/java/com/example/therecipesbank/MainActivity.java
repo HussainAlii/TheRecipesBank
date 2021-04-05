@@ -21,15 +21,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
 
     public void login(View view){
         if(usernameInput.getText().toString().equals(username)  && passwordInput.getText().toString().equals(password)){
-            Intent intent = new Intent(MainActivity.this, Home.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, Home.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
         }else{
             Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
         }
