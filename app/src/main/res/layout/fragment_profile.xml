@@ -37,6 +37,7 @@ tools:context=".profile">
         android:background="@android:color/darker_gray">
 
         <Button
+            android:id="@+id/profile_trendsButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -49,6 +50,7 @@ tools:context=".profile">
             />
 
         <Button
+            android:id="@+id/profile_favButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -64,7 +66,7 @@ tools:context=".profile">
 
 
         <Button
-            android:id="@+id/btnDownloadPdf"
+            android:id="@+id/profile_plus"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -77,6 +79,7 @@ tools:context=".profile">
 
 
         <Button
+            android:id="@+id/profile_myChefsButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -88,6 +91,7 @@ tools:context=".profile">
             app:layout_rowWeight="1" />
 
         <Button
+            android:id="@+id/profile_profileButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
