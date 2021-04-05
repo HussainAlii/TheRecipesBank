@@ -6,20 +6,36 @@ android:orientation="horizontal"
 tools:context=".MainActivity">
 
 <ImageView
-    android:layout_width="25dp"
-    android:layout_height="25dp"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="25dp"
-    android:src="@drawable/user"
+    android:src="@drawable/kitchens3"
     android:id="@+id/imageView1" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="20sp"
+        android:text="Nice Food"
+        android:textStyle="bold"
+        android:paddingTop="25dp"
+        android:paddingLeft="10dp"/>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView1"
-    android:textSize="30sp"
-    android:textStyle="bold"
-    android:padding="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/desc"
+        android:textSize="12sp"
+        android:text="This is a nice food, that is created by me..."
+        android:paddingLeft="10dp" />
+</LinearLayout>
+
 
 </LinearLayout>

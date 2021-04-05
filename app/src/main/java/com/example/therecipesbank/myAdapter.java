@@ -1,5 +1,6 @@
 package com.example.therecipesbank;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ class myAdapter extends ArrayAdapter<String> {
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-        View theView = inflater.inflate(R.layout.row_layout_2, parent, false);
+        @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_2, parent, false);
 
         String tvShows = getItem(position);
 
@@ -29,7 +30,7 @@ class myAdapter extends ArrayAdapter<String> {
 
         ImageView imageView = (ImageView) theView.findViewById(R.id.imageView1);
 
-        imageView.setImageResource(R.drawable.heart);
+        imageView.setImageResource(R.drawable.pizza);
 
         return theView;
     }
