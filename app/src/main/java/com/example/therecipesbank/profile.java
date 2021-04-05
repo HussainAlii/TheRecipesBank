@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,12 +72,28 @@ public class profile extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Buttons
+        Button profileButton         = view.findViewById(R.id.profile_profileButton);
+        Button createButton          = view.findViewById(R.id.profile_plus);
+        Button favButton             = view.findViewById(R.id.profile_favButton);
+        Button myChefsButton         = view.findViewById(R.id.profile_myChefsButton);
+        Button trendsButton          = view.findViewById(R.id.profile_trendsButton);
+        Button confirmButton         = view.findViewById(R.id.update_button);
 
-        Button profileButton = view.findViewById(R.id.profile_profileButton);
-        Button createButton = view.findViewById(R.id.profile_plus);
-        Button favButton = view.findViewById(R.id.profile_favButton);
-        Button myChefsButton = view.findViewById(R.id.profile_myChefsButton);
-        Button trendsButton = view.findViewById(R.id.profile_trendsButton);
+
+
+        //Views
+        EditText usernameEdtTxt      = view.findViewById(R.id.username_field);
+        EditText emailEdtTxt         = view.findViewById(R.id.email_field);
+        EditText passEdtTxt          = view.findViewById(R.id.password_field);
+        EditText confirmPassEdtTxt   = view.findViewById(R.id.password2_field);
+
+
+        //get info from the database
+        usernameEdtTxt.setText("Watcha lookin' at?");
+        emailEdtTxt.setText("6969@hotmail.com");
+        passEdtTxt.setText("Nope");
+        confirmPassEdtTxt.setText("Still Nope...");
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
@@ -112,6 +130,16 @@ public class profile extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_profile_to_popular);
+            }
+        });
+
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //set new profile info here from the database
+
+                Toast.makeText(getContext(),  "Yo yo yo !", Toast.LENGTH_LONG).show();
             }
         });
     }
