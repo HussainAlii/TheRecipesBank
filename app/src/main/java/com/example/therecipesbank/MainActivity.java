@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
@@ -30,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
         if(usernameInput.getText().toString().equals(username)  && passwordInput.getText().toString().equals(password)){
+            finishAffinity();
             startActivity(new Intent(MainActivity.this, Home.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
         }else{
             Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
         }
