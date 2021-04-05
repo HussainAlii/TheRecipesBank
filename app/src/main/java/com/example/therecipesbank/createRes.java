@@ -71,11 +71,11 @@ public class createRes extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button profileButton = view.findViewById(R.id.profileButton);
-        Button createButton = view.findViewById(R.id.createButton);
-        Button favButton = view.findViewById(R.id.favButton);
-        Button myChefsButton = view.findViewById(R.id.myChefsButton);
-        Button trendsButton = view.findViewById(R.id.trendsButton);
+        Button profileButton = view.findViewById(R.id.createRes_profileButton);
+        Button createButton = view.findViewById(R.id.createRes_addButton);
+        Button favButton = view.findViewById(R.id.createRes_favoriteButton);
+        Button myChefsButton = view.findViewById(R.id.createRes_dishButton);
+        Button trendsButton = view.findViewById(R.id.createRes_popularButton);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);

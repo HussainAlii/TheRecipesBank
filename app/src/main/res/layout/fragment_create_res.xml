@@ -37,6 +37,7 @@
             android:background="@android:color/darker_gray">
 
             <Button
+                android:id="@+id/createRes_popularButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/trend"
@@ -48,6 +49,7 @@
                 app:layout_rowWeight="1" />
 
             <Button
+                android:id="@+id/createRes_favoriteButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/heart"
@@ -60,7 +62,7 @@
 
 
             <Button
-                android:id="@+id/btnDownloadPdf"
+                android:id="@+id/createRes_addButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/plus"
@@ -74,6 +76,7 @@
 
 
             <Button
+                android:id="@+id/createRes_dishButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/sub"
@@ -85,6 +88,7 @@
                 app:layout_rowWeight="1" />
 
             <Button
+                android:id="@+id/createRes_profileButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:drawableBottom="@drawable/user"
