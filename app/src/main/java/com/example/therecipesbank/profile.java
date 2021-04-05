@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,4 +67,52 @@ public class profile extends Fragment {
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button profileButton = view.findViewById(R.id.profile_profileButton);
+        Button createButton = view.findViewById(R.id.profile_plus);
+        Button favButton = view.findViewById(R.id.profile_favButton);
+        Button myChefsButton = view.findViewById(R.id.profile_myChefsButton);
+        Button trendsButton = view.findViewById(R.id.profile_trendsButton);
+
+        final NavController navController = Navigation.findNavController(getActivity(),
+                R.id.nav_host_fragment);
+
+//        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navController.navigate(R.id.);
+//            }
+//        });
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profile_to_createRes);
+            }
+        });
+
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profile_to_favList);
+            }
+        });
+
+        myChefsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profile_to_myChefs);
+            }
+        });
+
+        trendsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profile_to_popular);
+            }
+        });
+    }
 }

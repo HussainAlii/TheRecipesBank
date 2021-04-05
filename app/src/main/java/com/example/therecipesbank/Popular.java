@@ -71,32 +71,36 @@ public class Popular extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Button profileButton = view.findViewById(R.id.popular_profileButton);
+        Button createButton = view.findViewById(R.id.popular_createButton);
+        Button favButton = view.findViewById(R.id.popular_favButton);
+        Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
+        Button trendsButton = view.findViewById(R.id.popular_trendsButton);
 
-        final NavController navController = Navigation.findNavController(getActivity(),
-                R.id.nav_host_fragment);
+        final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
-        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
+        profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_profile);
             }
         });
 
-        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_createRes);
             }
         });
 
-        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {
+        favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_favList);
             }
         });
 
-        view.findViewById(R.id.myChefsButton).setOnClickListener(new View.OnClickListener() {
+       myChefsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_popular_to_myChefs);

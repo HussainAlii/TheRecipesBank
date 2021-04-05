@@ -1,8 +1,9 @@
 package com.example.therecipesbank;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.view.View;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class Home extends AppCompatActivity {
 

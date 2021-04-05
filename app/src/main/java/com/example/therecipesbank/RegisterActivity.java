@@ -17,8 +17,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void Register(View view){
         if(true){
-            startActivity(new Intent(RegisterActivity.this, Home.class));
-
+            finishAffinity();
+            startActivity(new Intent(RegisterActivity.this, Home.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }else{
             Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
         }
