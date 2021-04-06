@@ -52,9 +52,11 @@ public class DbHandler extends SQLiteOpenHelper {
                 "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
 
+
+
         db.execSQL(CREATE_TABLE);
         db.execSQL(createPostTableQuery);
-        //db.execSQL("Drop table "+POST_TABLE);
+
     }
 
     @Override
@@ -85,10 +87,16 @@ public class DbHandler extends SQLiteOpenHelper {
         ContentValues cValues = new ContentValues();
         cValues.put(TITLE, title);
         cValues.put(DESC, desc);
-        cValues.put(IMG, img);
-        cValues.put(USER_ID, userId);
+        cValues.put(USER_ID, 1);
+
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(POST_TABLE,null, cValues);
+
+//        String PostInsertQuery = "INSERT INTO "+POST_TABLE+
+//                "("+TITLE+ "," + DESC + ","+ IMG+","+ USER_ID + ")"+
+//                " VALUES (" + "\""+title+ "\"" + "," + "\""+desc+ "\""+","+"\""+img +"\"" + ",1);";
+//
+//        db.execSQL(PostInsertQuery);
     }
 
     public ArrayList<HashMap<String, String>> login(String password, String email) {
