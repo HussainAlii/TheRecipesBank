@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.etPassword);
         dbHandler = new DbHandler(MainActivity.this);
 
-        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.registerView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void login(View view){
+    public void loginPage(View view){
         ArrayList<HashMap<String, String>> dataList = dbHandler.login(passwordInput.getText().toString(),usernameInput.getText().toString());
         if(dataList.size()==1){
             dataList.forEach((user) -> {

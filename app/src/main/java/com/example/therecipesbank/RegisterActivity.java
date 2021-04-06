@@ -18,14 +18,15 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        usernameInput = findViewById(R.id.etEmail);
-        passwordInput = findViewById(R.id.etPassword);
-        EmailInput = findViewById(R.id.etEmail);
+        usernameInput = findViewById(R.id.UsernameRegister);
+        passwordInput = findViewById(R.id.PasswordRegister);
+        EmailInput = findViewById(R.id.EmailRegister);
         dbHandler = new DbHandler(RegisterActivity.this);
     }
 
     public void Register(View view){
         ArrayList<HashMap<String, String>> dataList = dbHandler.login(passwordInput.getText().toString(),usernameInput.getText().toString());
+
         if(dataList.size()==0){
             dbHandler.insertUserData(usernameInput.getText().toString(),passwordInput.getText().toString(),EmailInput.getText().toString());
             finishAffinity();
