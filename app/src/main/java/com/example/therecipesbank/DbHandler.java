@@ -13,8 +13,8 @@ import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
      static final int DB_VERSION = 1;
-     static final String DB_NAME = "theRecipesBank";
-     static final String USER_TABLE = "User";
+     static final String DB_NAME = "theRecipesBank1";
+     static final String USER_TABLE = "Chefs";
      static final String KEY_ID = "id";
      static final String KEY_Username = "username";
      static final String KEY_Email = "email";
@@ -43,7 +43,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
         String createPostTableQuery = "CREATE TABLE " + POST_TABLE + "(" +
-                POST_ID + " INTEGER PRIMARY KEY, auto increment ,"
+                POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TITLE + "TEXT,"
                 + DESC + "TEXT,"
                 + IMG +"TEXT,"

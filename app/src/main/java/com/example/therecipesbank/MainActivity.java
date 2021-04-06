@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        usernameInput = findViewById(R.id.etEmail);
-        passwordInput = findViewById(R.id.etPassword);
+        usernameInput = findViewById(R.id.Email);
+        passwordInput = findViewById(R.id.Password);
         dbHandler = new DbHandler(MainActivity.this);
 
         findViewById(R.id.registerView).setOnClickListener(new View.OnClickListener() {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginPage(View view){
         ArrayList<HashMap<String, String>> dataList = dbHandler.login(passwordInput.getText().toString(),usernameInput.getText().toString());
+
         if(dataList.size()==1){
             dataList.forEach((user) -> {
                 Username=user.get(DbHandler.KEY_Username);
