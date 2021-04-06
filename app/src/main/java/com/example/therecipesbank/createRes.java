@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,6 +77,9 @@ public class createRes extends Fragment {
         Button favButton = view.findViewById(R.id.createRes_favoriteButton);
         Button myChefsButton = view.findViewById(R.id.createRes_dishButton);
         Button trendsButton = view.findViewById(R.id.createRes_popularButton);
+        Button postButton = view.findViewById(R.id.RConfirm);
+        EditText recTitle = view.findViewById(R.id.RTitile);
+        EditText recDesc = view.findViewById(R.id.RDesc);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
@@ -112,6 +116,13 @@ public class createRes extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_popular);
+            }
+        });
+
+        trendsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), "/picture path/", 1);
             }
         });
     }
