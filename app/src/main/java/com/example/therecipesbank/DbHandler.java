@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "map";
-    private static final String TABLE = "location";
-    private static final String KEY_ID = "id";
-    private static final String KEY_Note = "note";
-    private static final String KEY_LAT = "lat";
-    private static final String KEY_LNG = "lng";
+     static final int DB_VERSION = 1;
+     static final String DB_NAME = "theRecipesBank";
+     static final String USER_TABLE = "User";
+     static final String KEY_ID = "id";
+     static final String KEY_Username = "username";
+     static final String KEY_Email = "email";
+     static final String KEY_Password = "password";
 
     public DbHandler(Context context) {
         super(context,DB_NAME,null,DB_VERSION);
@@ -26,46 +26,47 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE + "(" +
-                KEY_Note + " TEXT,"+
-                KEY_LAT + " TEXT," + KEY_LNG + " TEXT" + ")";
+        String CREATE_TABLE = "CREATE TABLE " + USER_TABLE + "(" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                KEY_Username + " TEXT,"+
+                KEY_Email + " TEXT,"+
+                KEY_Password + " TEXT" + ")";
                 db.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if exist
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
         // Create tables again
         onCreate(db);
     }
 
-    public void insertData(String note, String lat, String lng){
+    public void insertUserData(String username, String password, String email){
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
-        cValues.put(KEY_Note, note);
-        cValues.put(KEY_LAT, lat);
-        cValues.put(KEY_LNG, lng);
+        cValues.put(KEY_Username, username);
+        cValues.put(KEY_Password, password);
+        cValues.put(KEY_Email, email);
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE,null, cValues);
+        long newRowId = db.insert(USER_TABLE,null, cValues);
     }
 
-    public ArrayList<HashMap<String, String>> GetData() {
+    public ArrayList<HashMap<String, String>> login(String password, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+TABLE;
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+password+" and "+ KEY_Email+"="+email;
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
             HashMap<String, String> dataHash = new HashMap<>();
-            dataHash.put(KEY_Note, cursor.getString((cursor.getColumnIndex(KEY_Note))));
-            dataHash.put(KEY_LAT, cursor.getString((cursor.getColumnIndex(KEY_LAT))));
-            dataHash.put(KEY_LNG, cursor.getString((cursor.getColumnIndex(KEY_LNG))));
+            dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
+            dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
+            dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
             dataList.add(dataHash);
         }
-
         return dataList;
     }
 
