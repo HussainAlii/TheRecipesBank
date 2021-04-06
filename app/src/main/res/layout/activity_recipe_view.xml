@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".recipeView"
+    tools:deviceIds="wear"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text=".........."
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+            <ImageView
+                android:id="@+id/RImg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="28dp"
+                android:hint="Enter Recipy title"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/RDesc"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/roundedbor"
+                android:textSize="20dp" />
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <Button
+                    android:id="@+id/favList_trendsButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:drawableBottom="@drawable/heart"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    app:iconGravity="textStart"
+                    app:layout_columnWeight="2"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1"
+                    android:background="@drawable/roundedheart1"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    style="?android:attr/borderlessButtonStyle"/>
+                <Button
+                    android:id="@+id/favList_myChefsButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Subscribe"
+                    android:textSize="17dp"
+                    android:background="@drawable/confirm_border"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    app:iconGravity="textStart"
+                    app:layout_columnWeight="6"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1" />
+            </androidx.gridlayout.widget.GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
