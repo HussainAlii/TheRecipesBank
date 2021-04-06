@@ -48,7 +48,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 + DESC + "TEXT,"
                 + IMG +"TEXT,"
                 +USER_ID +" TEXT,"+
-                "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+USER_ID+")"+
+                "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
 
         db.execSQL(CREATE_TABLE);
