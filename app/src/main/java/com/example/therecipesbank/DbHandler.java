@@ -20,6 +20,14 @@ public class DbHandler extends SQLiteOpenHelper {
      static final String KEY_Email = "email";
      static final String KEY_Password = "password";
 
+    private static final String POST_TABLE  = "posts";
+    private static final String TITLE       = "title";
+    private static final String POST_ID     = "post_id";
+    private static final String DESC        = "desc";
+    private static final String IMG         = "img";
+    private static final String USER_ID     = "user_id";
+
+
     public DbHandler(Context context) {
         super(context,DB_NAME,null,DB_VERSION);
     }
@@ -32,6 +40,19 @@ public class DbHandler extends SQLiteOpenHelper {
                 KEY_Email + " TEXT,"+
                 KEY_Password + " TEXT" + ")";
                 db.execSQL(CREATE_TABLE);
+
+
+        String createPostTableQuery = "CREATE TABLE " + POST_TABLE + "(" +
+                POST_ID + " INTEGER PRIMARY KEY, auto increment ,"
+                + TITLE + "TEXT,"
+                + DESC + "TEXT,"
+                + IMG +"TEXT,"
+                +USER_ID +" TEXT,"+
+                "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+USER_ID+")"+
+                ")";
+
+        db.execSQL(CREATE_TABLE);
+        db.execSQL(createPostTableQuery);
     }
 
     @Override
@@ -54,6 +75,20 @@ public class DbHandler extends SQLiteOpenHelper {
         long newRowId = db.insert(USER_TABLE,null, cValues);
     }
 
+    
+    public void insertIntoPosts(String title, String desc, String img, int userid){
+        //Get the Data Repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Create a new map of values, where column names are the keys
+        ContentValues cValues = new ContentValues();
+        cValues.put(TITLE, title);
+        cValues.put(DESC, desc);
+        cValues.put(IMG, img);
+        cValues.put(USER_ID, userid);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(POST_TABLE,null, cValues);
+    }
+
     public ArrayList<HashMap<String, String>> login(String password, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
@@ -67,6 +102,24 @@ public class DbHandler extends SQLiteOpenHelper {
             dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
             dataList.add(dataHash);
         }
+        return dataList;
+    }
+
+    public ArrayList<HashMap<String, String>> getPostInfo() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+
+        String query = "SELECT * FROM "+POST_TABLE;
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            HashMap<String, String> dataHash = new HashMap<>();
+            dataHash.put(TITLE, cursor.getString((cursor.getColumnIndex(TITLE))));
+            dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
+            dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
+            dataHash.put(USER_ID, cursor.getString((cursor.getColumnIndex(USER_ID))));
+            dataList.add(dataHash);
+        }
+
         return dataList;
     }
 
