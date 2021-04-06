@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
      static final int DB_VERSION = 1;
-     static final String DB_NAME = "theRecipesBank1";
+     static final String DB_NAME = "theRecipesBank";
      static final String USER_TABLE = "Chefs";
      static final String KEY_ID = "id";
      static final String KEY_Username = "username";
@@ -34,7 +34,8 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + USER_TABLE + "(" +
+
+        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + "(" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 KEY_Username + " TEXT,"+
                 KEY_Email + " TEXT,"+
@@ -42,17 +43,18 @@ public class DbHandler extends SQLiteOpenHelper {
                 db.execSQL(CREATE_TABLE);
 
 
-        String createPostTableQuery = "CREATE TABLE " + POST_TABLE + "(" +
+        String createPostTableQuery = "CREATE TABLE IF NOT EXISTS " + POST_TABLE + "(" +
                 POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TITLE + "TEXT,"
                 + DESC + "TEXT,"
                 + IMG +"TEXT,"
-                +USER_ID +" TEXT,"+
+                + USER_ID +" TEXT,"+
                 "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
 
         db.execSQL(CREATE_TABLE);
         db.execSQL(createPostTableQuery);
+        //db.execSQL("Drop table "+POST_TABLE);
     }
 
     @Override
@@ -76,7 +78,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     
-    public void insertIntoPosts(String title, String desc, String img, int userid){
+    public void insertIntoPosts(String title, String desc, String img, int userId){
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
@@ -84,7 +86,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cValues.put(TITLE, title);
         cValues.put(DESC, desc);
         cValues.put(IMG, img);
-        cValues.put(USER_ID, userid);
+        cValues.put(USER_ID, userId);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(POST_TABLE,null, cValues);
     }
@@ -93,7 +95,7 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+password+" and "+ KEY_Email+"="+email;
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+"\""+password+"\" and "+ KEY_Email+"="+"\""+email+"\"";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
             HashMap<String, String> dataHash = new HashMap<>();

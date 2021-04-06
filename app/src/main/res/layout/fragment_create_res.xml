@@ -49,11 +49,17 @@
 
         <EditText
             android:id="@+id/RDesc"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="250dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/roundedbor"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -82,7 +88,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/confirm_border"
-            android:onClick=""
+
             android:text="Confirm"
             android:fontFamily="serif"
             android:textAlignment="center"
