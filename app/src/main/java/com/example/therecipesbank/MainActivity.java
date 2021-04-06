@@ -14,8 +14,9 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private static final String username = "";
     private static final String password = "";
+
     EditText usernameInput, passwordInput;
-    static DbHandler dbHandler;
+    public static DbHandler dbHandler;
     static String Username = "";
     static String Email = "";
     static String Password ="";
