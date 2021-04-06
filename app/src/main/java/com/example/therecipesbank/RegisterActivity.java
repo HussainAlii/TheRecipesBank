@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText usernameInput, passwordInput,EmailInput;
-    static DbHandler dbHandler;
+   DbHandler dbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.UsernameRegister);
         passwordInput = findViewById(R.id.PasswordRegister);
         EmailInput = findViewById(R.id.EmailRegister);
-        dbHandler = new DbHandler(RegisterActivity.this);
+        dbHandler = MainActivity.dbHandler;
     }
 
     public void Register(View view){
