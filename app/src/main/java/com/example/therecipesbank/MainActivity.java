@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     EditText usernameInput, passwordInput;
-    static DbHandler dbHandler;
+    public static DbHandler dbHandler;
     static String Username = "";
     static String Email = "";
     static String Password ="";
