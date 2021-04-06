@@ -23,6 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/viewRTitle"
                 android:fontFamily="serif"
                 android:text=".........."
                 android:textColor="@color/colorPrimary"
@@ -31,7 +32,7 @@
                 android:textAlignment="center"/>
 
             <ImageView
-                android:id="@+id/RImg"
+                android:id="@+id/viewRImg"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -40,7 +41,7 @@
                 android:textAlignment="center"/>
 
             <TextView
-                android:id="@+id/RDesc"
+                android:id="@+id/viewRDesc"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="28dp"
@@ -52,7 +53,7 @@
                 android:layout_weight="2">
 
                 <Button
-                    android:id="@+id/favList_trendsButton"
+                    android:id="@+id/like"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:drawableBottom="@drawable/heart"
@@ -62,12 +63,12 @@
                     app:layout_columnWeight="2"
                     app:layout_row="0"
                     app:layout_rowWeight="1"
-                    android:background="@drawable/roundedheart1"
+                    android:background="@null"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     style="?android:attr/borderlessButtonStyle"/>
                 <Button
-                    android:id="@+id/favList_myChefsButton"
+                    android:id="@+id/subscribe"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:text="Subscribe"
