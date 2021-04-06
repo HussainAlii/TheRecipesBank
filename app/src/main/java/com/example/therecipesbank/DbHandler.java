@@ -48,12 +48,13 @@ public class DbHandler extends SQLiteOpenHelper {
                 + TITLE + "TEXT,"
                 + DESC + "TEXT,"
                 + IMG +"TEXT,"
-                +USER_ID +" TEXT,"+
+                + USER_ID +" TEXT,"+
                 "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
 
         db.execSQL(CREATE_TABLE);
         db.execSQL(createPostTableQuery);
+        //db.execSQL("Drop table "+POST_TABLE);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     
-    public void insertIntoPosts(String title, String desc, String img, int userid){
+    public void insertIntoPosts(String title, String desc, String img, int userId){
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
@@ -85,7 +86,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cValues.put(TITLE, title);
         cValues.put(DESC, desc);
         cValues.put(IMG, img);
-        cValues.put(USER_ID, userid);
+        cValues.put(USER_ID, userId);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(POST_TABLE,null, cValues);
     }

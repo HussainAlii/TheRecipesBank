@@ -82,7 +82,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/confirm_border"
-            android:onClick=""
+
             android:text="Confirm"
             android:fontFamily="serif"
             android:textAlignment="center"

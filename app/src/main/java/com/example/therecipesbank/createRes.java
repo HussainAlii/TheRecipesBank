@@ -119,7 +119,7 @@ public class createRes extends Fragment {
             }
         });
 
-        trendsButton.setOnClickListener(new View.OnClickListener() {
+        postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), "/picture path/", 1);
