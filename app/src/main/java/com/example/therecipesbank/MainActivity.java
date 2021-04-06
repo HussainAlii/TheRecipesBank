@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String username = "";
-    private static final String password = "";
     EditText usernameInput, passwordInput;
     static DbHandler dbHandler;
     static String Username = "";
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.etEmail);
         passwordInput = findViewById(R.id.etPassword);
         dbHandler = new DbHandler(MainActivity.this);
+
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,16 +37,22 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         ArrayList<HashMap<String, String>> dataList = dbHandler.login(passwordInput.getText().toString(),usernameInput.getText().toString());
         if(dataList.size()==1){
-            dataList.forEach((a) -> {
-                LatLng currentLoc = new LatLng(Double.parseDouble(a.get(KEY_LAT)), Double.parseDouble(a.get(KEY_LNG)));
-                mMap.addMarker(new MarkerOptions().position(currentLoc).title(a.get(KEY_Note)));
+            dataList.forEach((user) -> {
+                Username=user.get(DbHandler.KEY_Username);
+                Password=user.get(DbHandler.KEY_Password);
+                Email=user.get(DbHandler.KEY_Email);
             });
 
             finishAffinity();
-            startActivity(new Intent(MainActivity.this, Home.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            Intent intent = new Intent(MainActivity.this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("Username",Username);
+            intent.putExtra("Password",Password);
+            intent.putExtra("Email",Email);
+            startActivity(intent);
 
         }else{
-            Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
         }
     }
 }

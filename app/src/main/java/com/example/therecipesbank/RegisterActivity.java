@@ -5,22 +5,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.HashMap;
 
+public class RegisterActivity extends AppCompatActivity {
+    EditText usernameInput, passwordInput,EmailInput;
+    static DbHandler dbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        usernameInput = findViewById(R.id.etEmail);
+        passwordInput = findViewById(R.id.etPassword);
+        EmailInput = findViewById(R.id.etEmail);
+        dbHandler = new DbHandler(RegisterActivity.this);
     }
 
     public void Register(View view){
-        if(true){
+        ArrayList<HashMap<String, String>> dataList = dbHandler.login(passwordInput.getText().toString(),usernameInput.getText().toString());
+        if(dataList.size()==0){
+            dbHandler.insertUserData(usernameInput.getText().toString(),passwordInput.getText().toString(),EmailInput.getText().toString());
             finishAffinity();
-            startActivity(new Intent(RegisterActivity.this, Home.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            Intent intent = new Intent(RegisterActivity.this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("Username",usernameInput.getText().toString());
+            intent.putExtra("Password",passwordInput.getText().toString());
+            intent.putExtra("Email",EmailInput.getText().toString());
+            startActivity(intent);
+
         }else{
-            Toast.makeText(this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "The Account Is Already Exist!", Toast.LENGTH_SHORT).show();
         }
+
     }
 }
