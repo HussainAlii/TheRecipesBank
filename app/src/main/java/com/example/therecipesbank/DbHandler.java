@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
-     static final int DB_VERSION = 1;
+     static final int DB_VERSION = 5;
      static final String DB_NAME = "theRecipesBank";
      static final String USER_TABLE = "Chefs";
      static final String KEY_ID = "id";
@@ -86,6 +86,9 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
+        cValues.put(TITLE, title);
+        cValues.put(DESC, desc);
+        cValues.put(IMG, img);
         cValues.put(USER_ID, userId);
 
         // Insert the new row, returning the primary key value of the new row
@@ -141,6 +144,22 @@ public class DbHandler extends SQLiteOpenHelper {
             dataList.add(dataHash);
         }
 
+        return dataList;
+    }
+
+    public ArrayList<HashMap<String, String>> getProfileInfo(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_ID+" = "+userId;
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            HashMap<String, String> dataHash = new HashMap<>();
+            dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
+            dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
+            dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
+            dataList.add(dataHash);
+        }
         return dataList;
     }
 

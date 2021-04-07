@@ -83,6 +83,7 @@ public class createRes extends Fragment {
         EditText recTitle = view.findViewById(R.id.RTitile);
         EditText recDesc = view.findViewById(R.id.RDesc);
 
+
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
