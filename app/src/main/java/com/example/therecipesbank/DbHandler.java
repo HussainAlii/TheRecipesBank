@@ -163,4 +163,10 @@ public class DbHandler extends SQLiteOpenHelper {
         return dataList;
     }
 
+    public ArrayList<String> getPopularFoodList() {
+
+    }
+
+    public ArrayList<String[]> getinfoPopularList() {
+    }
 }

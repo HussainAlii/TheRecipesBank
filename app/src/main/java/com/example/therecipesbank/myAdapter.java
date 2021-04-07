@@ -9,9 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-class myAdapter extends ArrayAdapter<String> {
+import java.util.ArrayList;
 
-    public myAdapter(Context context, String[] values) {
+class myAdapter extends ArrayAdapter<String> {
+    public myAdapter(Context context, ArrayList<String> values) {
         super(context, R.layout.row_layout_2, values);
     }
 
@@ -22,7 +23,7 @@ class myAdapter extends ArrayAdapter<String> {
 
         @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_2, parent, false);
 
-        String tvShows = getItem(position);
+        String tvShows = "getItem(position)";
 
         TextView textView = (TextView) theView.findViewById(R.id.textView1);
 

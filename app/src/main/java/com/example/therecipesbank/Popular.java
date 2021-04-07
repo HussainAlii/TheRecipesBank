@@ -19,6 +19,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Popular#newInstance} factory method to
@@ -83,13 +85,23 @@ public class Popular extends Fragment {
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
         Button trendsButton = view.findViewById(R.id.popular_trendsButton);
 
-        String foodList []= {"Apple","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate"};
+        //ArrayList<String> foodList =MainActivity.dbHandler.getPopularFoodList();
+        //ArrayList<String[]> infoList = MainActivity.dbHandler.getinfoPopularList();
+        ArrayList<String> foodList = new ArrayList<>();
+        ArrayList<String[]> infoList = new ArrayList<>();
+        String[] info = new String[4];
+        info[0]="Title";info[1]="desc";info[2]="img";info[3]="likes";
+        infoList.add(info);
+        foodList.add("Apple");
+        int counter = 0;
+        for(int i = 0; i<infoList.size();i++) {
 
+
+        }
         ListAdapter theAdapter = new myAdapter(getContext(), foodList);
-        ListView trendList = view.findViewById(R.id.trendsList);
-        trendList.setAdapter(theAdapter);
-
-        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListView chefList = view.findViewById(R.id.myChefsList);
+        chefList.setAdapter(theAdapter);
+        chefList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //adapterView.getItemAtPosition(position)
