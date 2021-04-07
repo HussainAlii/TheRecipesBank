@@ -23,7 +23,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String POST_TABLE  = "posts";
     private static final String TITLE       = "title";
     private static final String POST_ID     = "post_id";
-    private static final String DESC        = "desc";
+    private static final String DESC        = "description";
     private static final String IMG         = "img";
     private static final String USER_ID     = "user_id";
 
@@ -45,11 +45,11 @@ public class DbHandler extends SQLiteOpenHelper {
 
         String createPostTableQuery = "CREATE TABLE IF NOT EXISTS " + POST_TABLE + "(" +
                 POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + TITLE + "TEXT,"
-                + DESC + "TEXT,"
-                + IMG +"TEXT,"
-                + USER_ID +" TEXT,"+
-                "FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
+                + TITLE + " TEXT,"
+                + DESC + " TEXT,"
+                + IMG +" TEXT,"
+                + USER_ID +" INTEGER,"+
+                " FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
 
 
@@ -85,9 +85,7 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
-        cValues.put(TITLE, title);
-        cValues.put(DESC, desc);
-        cValues.put(USER_ID, 1);
+        cValues.put(USER_ID, userId);
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(POST_TABLE,null, cValues);
