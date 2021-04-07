@@ -134,4 +134,20 @@ public class DbHandler extends SQLiteOpenHelper {
         return dataList;
     }
 
+    public ArrayList<HashMap<String, String>> getProfileInfo(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_ID+" = "+userId;
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            HashMap<String, String> dataHash = new HashMap<>();
+            dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
+            dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
+            dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
+            dataList.add(dataHash);
+        }
+        return dataList;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.therecipesbank;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,13 +91,9 @@ public class profile extends Fragment {
         EditText emailEdtTxt         = view.findViewById(R.id.email_field);
         EditText passEdtTxt          = view.findViewById(R.id.password_field);
 
-
-
-        //get info from the database
-        usernameEdtTxt.setText("Watcha lookin' at?");
-        emailEdtTxt.setText("6969@hotmail.com");
-        passEdtTxt.setText("Nope");
-
+        usernameEdtTxt.setText(MainActivity.Username);
+        emailEdtTxt.setText(MainActivity.Email);
+        passEdtTxt.setText(MainActivity.Password);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
