@@ -86,14 +86,14 @@ public class profile extends Fragment {
         EditText usernameEdtTxt      = view.findViewById(R.id.username_field);
         EditText emailEdtTxt         = view.findViewById(R.id.email_field);
         EditText passEdtTxt          = view.findViewById(R.id.password_field);
-        EditText confirmPassEdtTxt   = view.findViewById(R.id.password2_field);
+
 
 
         //get info from the database
         usernameEdtTxt.setText("Watcha lookin' at?");
         emailEdtTxt.setText("6969@hotmail.com");
         passEdtTxt.setText("Nope");
-        confirmPassEdtTxt.setText("Still Nope...");
+
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
