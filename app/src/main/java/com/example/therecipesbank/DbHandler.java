@@ -163,4 +163,23 @@ public class DbHandler extends SQLiteOpenHelper {
         return dataList;
     }
 
+    public void updateUserProfile(String userName, String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //db.execSQL(  "update "+USER_TABLE+" set "+KEY_Username+" = \""+userName+", "+KEY_Email+" = \""+email+", "+KEY_Password+" = \""+password+" where "+KEY_Username+" = \""+MainActivity.Username );
+        //db.execSQL(  "update Chefs set username = "+userName+" , email = "+email+" , password = "+password+" where username =  "+ MainActivity.Username);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_Username, userName);
+        contentValues.put(KEY_Email, email);
+        contentValues.put(KEY_Password, password);
+        db.update(USER_TABLE, contentValues, "id=?", new String[]{String.valueOf(MainActivity.UserId)});
+
+    }
+
+    public boolean isAccountExist(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+USER_TABLE+" where "+ KEY_Username+"="+"\""+username+"\"";
+        Cursor cursor = db.rawQuery(query, null);
+        return  cursor.getCount()!=0;
+    }
+
 }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -126,6 +127,8 @@ public class createRes extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), "picture path", MainActivity.UserId);
+                Toast.makeText(getContext(), "Your recipe has been posted ;)", Toast.LENGTH_LONG).show();
+                navController.navigate(R.id.action_createRes_to_popular);
             }
         });
     }
