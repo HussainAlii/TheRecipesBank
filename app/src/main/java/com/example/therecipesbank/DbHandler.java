@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
-     static final int DB_VERSION = 1;
+     static final int DB_VERSION = 5;
      static final String DB_NAME = "theRecipesBank";
      static final String USER_TABLE = "Chefs";
      static final String KEY_ID = "id";
@@ -85,6 +85,9 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
+        cValues.put(TITLE, title);
+        cValues.put(DESC, desc);
+        cValues.put(IMG, img);
         cValues.put(USER_ID, userId);
 
         // Insert the new row, returning the primary key value of the new row
