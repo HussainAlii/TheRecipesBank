@@ -1,6 +1,7 @@
 package com.example.therecipesbank;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -83,6 +84,7 @@ public class profile extends Fragment {
         Button myChefsButton         = view.findViewById(R.id.profile_myChefsButton);
         Button trendsButton          = view.findViewById(R.id.profile_trendsButton);
         Button confirmButton         = view.findViewById(R.id.update_button);
+        Button signOutButton         = view.findViewById(R.id.sigOutButton);
 
 
 
@@ -140,6 +142,15 @@ public class profile extends Fragment {
                 //set new profile info here from the database
 
                 Toast.makeText(getContext(),  "Yo yo yo !", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //set new profile info here from the database
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
