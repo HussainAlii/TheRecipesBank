@@ -2,6 +2,7 @@ package com.example.therecipesbank;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -97,20 +98,32 @@ public class DbHandler extends SQLiteOpenHelper {
 //        db.execSQL(PostInsertQuery);
     }
 
-    public ArrayList<HashMap<String, String>> login(String password, String email) {
+    public ArrayList<HashMap<String, String>> login(String password, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+"\""+password+"\" and "+ KEY_Email+"="+"\""+email+"\"";
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+"\""+password+"\" and "+ KEY_Username+"="+"\""+username+"\"";
         Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount()==0){
+            query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Password+"="+"\""+password+"\" and "+ KEY_Email+"="+"\""+username+"\"";
+            cursor = db.rawQuery(query, null);
+        }
         while (cursor.moveToNext()){
             HashMap<String, String> dataHash = new HashMap<>();
+            dataHash.put(KEY_ID, cursor.getString((cursor.getColumnIndex(KEY_ID))));
             dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
             dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
             dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
             dataList.add(dataHash);
         }
         return dataList;
+    }
+
+    public boolean isAccountExist(String email,String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_Email+"="+"\""+email+"\" or "+ KEY_Username+"="+"\""+username+"\"";
+        Cursor cursor = db.rawQuery(query, null);
+        return  cursor.getCount()!=0;
     }
 
     public ArrayList<HashMap<String, String>> getPostInfo() {

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     static String Username = "";
     static String Email = "";
     static String Password ="";
+    static int UserId=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +40,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(dataList.size()==1){
             dataList.forEach((user) -> {
+                UserId =Integer.parseInt(user.get(DbHandler.KEY_ID));
                 Username=user.get(DbHandler.KEY_Username);
                 Password=user.get(DbHandler.KEY_Password);
                 Email=user.get(DbHandler.KEY_Email);
             });
-
             finishAffinity();
             Intent intent = new Intent(MainActivity.this, Home.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("Username",Username);
-            intent.putExtra("Password",Password);
-            intent.putExtra("Email",Email);
+            intent.putExtra("isFirstLogin",true);
             startActivity(intent);
 
         }else{
-            Toast.makeText(this, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
         }
     }
 }
