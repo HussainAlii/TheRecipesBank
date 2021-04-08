@@ -81,18 +81,7 @@ public class myChefs extends Fragment {
         Button myChefsButton = view.findViewById(R.id.myChefs_myChefsButton);
         Button trendsButton = view.findViewById(R.id.myChefs_trendsButton);
 
-        String foodList []= {"Apple","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate","Chocolate"};
 
-        ListAdapter theAdapter = new myAdapter(getContext(), foodList);
-        ListView trendList = view.findViewById(R.id.myChefsList);
-        trendList.setAdapter(theAdapter);
-
-        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //adapterView.getItemAtPosition(position)
-            }
-        });
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
