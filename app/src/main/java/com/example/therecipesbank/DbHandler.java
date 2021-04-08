@@ -210,11 +210,11 @@ public class DbHandler extends SQLiteOpenHelper {
         return postList;
     }
 
-    public ArrayList getFavoriteList() {
+    public ArrayList<post> getFavoriteList(int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<post> postList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+POST_TABLE+" order by "+POST_ID+" desc ";
+        String query = "SELECT username, ";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
 
@@ -227,8 +227,7 @@ public class DbHandler extends SQLiteOpenHelper {
                     cursor.getString((cursor.getColumnIndex(KEY_Username))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
             ));
-            // dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
-            // dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
+
         }
         return postList;
     }
