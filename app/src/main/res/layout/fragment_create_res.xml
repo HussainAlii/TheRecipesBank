@@ -31,7 +31,6 @@
             android:layout_marginTop="28dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Recipy title"
             android:textSize="20dp"
             android:id="@+id/RTitile"
             android:background="@drawable/roundedbor"
@@ -40,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Describe_your_recipe:"
+            android:text="Describe your recipe:"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginTop="28dp"
