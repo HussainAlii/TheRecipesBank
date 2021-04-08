@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link favList#newInstance} factory method to
@@ -79,7 +81,16 @@ public class favList extends Fragment {
         Button myChefsButton = view.findViewById(R.id.favList_myChefsButton);
         Button trendsButton = view.findViewById(R.id.favList_trendsButton);
 
-
+        ArrayList<post> postList = MainActivity.dbHandler.getFavoriteList(MainActivity.Username);
+        ListAdapter theAdapter = new myAdapter(getContext(), postList);
+        ListView fav_list = view.findViewById(R.id.trendsList);
+        fav_list.setAdapter(theAdapter);
+        fav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //adapterView.getItemAtPosition(position)
+            }
+        });
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
