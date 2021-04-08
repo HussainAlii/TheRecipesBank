@@ -9,7 +9,7 @@ public class post {
     private int user_id        = -1;
     private int likes          = 0;
 
-    public post(String title, String post_id, String description, String img, int user_id,String username, int likes) {
+    public post( String post_id, String title, String description, String img, int user_id,String username, int likes) {
         this.title = title;
         this.post_id = post_id;
         this.description = description;
