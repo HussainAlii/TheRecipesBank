@@ -182,4 +182,23 @@ public class DbHandler extends SQLiteOpenHelper {
         return  cursor.getCount()!=0;
     }
 
+
+    public ArrayList<HashMap<String, String>> getLatestPosts(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+
+        String query = "SELECT * FROM "+POST_TABLE+" order by "+POST_ID+" desc ";
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            HashMap<String, String> dataHash = new HashMap<>();
+            dataHash.put(TITLE, cursor.getString((cursor.getColumnIndex(TITLE))));
+            dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
+            dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
+
+            dataList.add(dataHash);
+        }
+        return dataList;
+    }
+
+
 }
