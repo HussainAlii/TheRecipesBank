@@ -1,19 +1,20 @@
 package com.example.therecipesbank;
 
 public class post {
-    private String title       = "title";
-    private String post_id     = "post_id";
-    private String description        = "description";
-    private String img         = "img";
-    private String user_id     = "user_id";
+    private String title       = "";
+    private String post_id     = "";
+    private String description        = "";
+    private String img         = "";
+    private String user_id     = "";
+    private int likes        = 0;
 
-
-    public post(String title, String post_id, String description, String img, String user_id) {
+    public post(String title, String post_id, String description, String img, String user_id, int likes) {
         this.title = title;
         this.post_id = post_id;
         this.description = description;
         this.img = img;
         this.user_id = user_id;
+        this.likes = likes;
     }
 
     public String getTitle() {
@@ -30,6 +31,14 @@ public class post {
 
     public void setPost_id(String post_id) {
         this.post_id = post_id;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public String getDescription() {

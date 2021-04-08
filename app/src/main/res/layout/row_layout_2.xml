@@ -51,11 +51,11 @@ tools:context=".MainActivity">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/likes"
+            android:id="@+id/likesView"
             android:textSize="11sp"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="5dp"
-            android:text="99999" />
+            android:text="0" />
 
     </LinearLayout>
 
