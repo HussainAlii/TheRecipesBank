@@ -223,7 +223,9 @@ public class DbHandler extends SQLiteOpenHelper {
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
                     cursor.getString((cursor.getColumnIndex(IMG))),
-                    cursor.getString((cursor.getColumnIndex(USER_ID)))
+                    cursor.getInt((cursor.getColumnIndex(USER_ID))),
+                    cursor.getString((cursor.getColumnIndex(KEY_Username))),
+                    cursor.getInt((cursor.getColumnIndex(Likes)))
             ));
             // dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
             // dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
