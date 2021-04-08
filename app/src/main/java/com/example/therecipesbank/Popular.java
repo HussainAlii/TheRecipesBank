@@ -19,6 +19,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Popular#newInstance} factory method to
@@ -83,6 +85,16 @@ public class Popular extends Fragment {
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
         Button trendsButton = view.findViewById(R.id.popular_trendsButton);
 
+        ArrayList<post> postList = MainActivity.dbHandler.getLatestPosts();
+        ListAdapter theAdapter = new myAdapter(getContext(), postList);
+        ListView trendList = view.findViewById(R.id.trendsList);
+        trendList.setAdapter(theAdapter);
+        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //adapterView.getItemAtPosition(position)
+            }
+        });
         
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 

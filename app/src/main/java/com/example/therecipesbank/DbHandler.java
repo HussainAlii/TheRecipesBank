@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -26,6 +27,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String POST_ID     = "post_id";
     private static final String DESC        = "description";
     private static final String IMG         = "img";
+    private static final String Likes         = "likes";
     private static final String USER_ID     = "user_id";
 
     private static final String FAV_TABLE   = "favs";
@@ -56,6 +58,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 + TITLE + " TEXT,"
                 + DESC + " TEXT,"
                 + IMG +" TEXT,"
+                + Likes +" INTEGER,"
                 + USER_ID +" INTEGER,"+
                 " FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
                 ")";
@@ -106,6 +109,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cValues.put(TITLE, title);
         cValues.put(DESC, desc);
         cValues.put(IMG, img);
+        cValues.put(Likes, 0);
         cValues.put(USER_ID, userId);
 
         // Insert the new row, returning the primary key value of the new row
@@ -146,39 +150,21 @@ public class DbHandler extends SQLiteOpenHelper {
         return  cursor.getCount()!=0;
     }
 
-    public ArrayList<HashMap<String, String>> getPostInfo() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-
-        String query = "SELECT * FROM "+POST_TABLE;
-        Cursor cursor = db.rawQuery(query, null);
-        while (cursor.moveToNext()){
-            HashMap<String, String> dataHash = new HashMap<>();
-            dataHash.put(TITLE, cursor.getString((cursor.getColumnIndex(TITLE))));
-            dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
-            dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
-            dataHash.put(USER_ID, cursor.getString((cursor.getColumnIndex(USER_ID))));
-            dataList.add(dataHash);
-        }
-
-        return dataList;
-    }
-
-    public ArrayList<HashMap<String, String>> getProfileInfo(int userId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-
-        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_ID+" = "+userId;
-        Cursor cursor = db.rawQuery(query, null);
-        while (cursor.moveToNext()){
-            HashMap<String, String> dataHash = new HashMap<>();
-            dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
-            dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
-            dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
-            dataList.add(dataHash);
-        }
-        return dataList;
-    }
+//        public ArrayList<HashMap<String, String>> getProfileInfo(int userId) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+//
+//        String query = "SELECT * FROM "+USER_TABLE+" where "+KEY_ID+" = "+userId;
+//        Cursor cursor = db.rawQuery(query, null);
+//        while (cursor.moveToNext()){
+//            HashMap<String, String> dataHash = new HashMap<>();
+//            dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
+//            dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
+//            dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
+//            dataList.add(dataHash);
+//        }
+//        return dataList;
+//    }
 
     public void updateUserProfile(String userName, String email, String password){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -200,20 +186,21 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList getLatestPosts() {
+    public ArrayList<post> getLatestPosts() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<post> postList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+POST_TABLE+" order by "+POST_ID+" desc ";
+        String query = "SELECT * FROM "+POST_TABLE+" left join "+USER_TABLE+" where posts.user_id= Chefs.id order by "+POST_ID+" desc ";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
-
 
             postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
                     cursor.getString((cursor.getColumnIndex(IMG))),
-                    cursor.getString((cursor.getColumnIndex(USER_ID)))
+                    cursor.getInt((cursor.getColumnIndex(USER_ID))),
+                    cursor.getString((cursor.getColumnIndex(KEY_Username))),
+                    cursor.getInt((cursor.getColumnIndex(Likes)))
             ));
            // dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
            // dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
