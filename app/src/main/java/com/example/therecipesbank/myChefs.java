@@ -1,5 +1,6 @@
 package com.example.therecipesbank;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +84,16 @@ public class myChefs extends Fragment {
         Button myChefsButton = view.findViewById(R.id.myChefs_myChefsButton);
         Button trendsButton = view.findViewById(R.id.myChefs_trendsButton);
 
-
+        ArrayList<post> userList = MainActivity.dbHandler.getLatestChefs(Integer.parseInt(MainActivity.Username));
+        ListAdapter chefAdapter = new ChefAdapter(getContext(), userList);
+        ListView ChefsList = view.findViewById(R.id.myChefsList);
+        ChefsList.setAdapter(chefAdapter);
+        ChefsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //adapterView.getItemAtPosition(position)
+            }
+        });
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);

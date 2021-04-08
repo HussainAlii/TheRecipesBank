@@ -55,4 +55,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public int getImgLocation(String imgName){
+        return getResources().getIdentifier(imgName.toLowerCase(), "drawable", getPackageName());
+    }
 }

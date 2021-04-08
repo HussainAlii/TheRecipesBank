@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
@@ -23,7 +24,7 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class createRes extends Fragment {
-
+    static String imgLocation="";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -83,7 +84,7 @@ public class createRes extends Fragment {
         Button postButton = view.findViewById(R.id.RConfirm);
         EditText recTitle = view.findViewById(R.id.RTitile);
         EditText recDesc = view.findViewById(R.id.RDesc);
-
+        ImageView uploadImg = view.findViewById(R.id.RImg);
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
@@ -123,12 +124,34 @@ public class createRes extends Fragment {
             }
         });
 
+        uploadImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, 1);
+                imgLocation = "";
+            }
+        });
+
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), "picture path", MainActivity.UserId);
-                Toast.makeText(getContext(), "Your recipe has been posted ;)", Toast.LENGTH_LONG).show();
-                navController.navigate(R.id.action_createRes_to_popular);
+                if(!recTitle.getText().toString().equals("")) {
+                    if (!recDesc.getText().toString().equals("")) {
+                        if (!imgLocation.equals("")) {
+                            MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), imgLocation, MainActivity.UserId);
+                            Toast.makeText(getContext(), "Your recipe has been posted ;)", Toast.LENGTH_LONG).show();
+                            navController.navigate(R.id.action_createRes_to_popular);
+                        } else {
+                            Toast.makeText(getContext(), "Please Select a Picture", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Please Write a Title", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getContext(), "Please Write a Description", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

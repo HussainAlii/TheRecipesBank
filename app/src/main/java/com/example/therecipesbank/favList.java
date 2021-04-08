@@ -81,9 +81,9 @@ public class favList extends Fragment {
         Button myChefsButton = view.findViewById(R.id.favList_myChefsButton);
         Button trendsButton = view.findViewById(R.id.favList_trendsButton);
 
-        ArrayList<post> postList = MainActivity.dbHandler.getFavoriteList(MainActivity.Username);
+        ArrayList<post> postList = MainActivity.dbHandler.getFavoriteList(Integer.parseInt(MainActivity.UserId));
         ListAdapter theAdapter = new myAdapter(getContext(), postList);
-        ListView fav_list = view.findViewById(R.id.trendsList);
+        ListView fav_list = view.findViewById(R.id.favList_List);
         fav_list.setAdapter(theAdapter);
         fav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

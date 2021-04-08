@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class myAdapter extends ArrayAdapter<post> {
-    ArrayList<post> postsList =null;
+class ChefAdapter extends ArrayAdapter<post> {
+    ArrayList<post> usersList =null;
     MainActivity activity = new MainActivity();
-    public myAdapter(Context context, ArrayList<post> postList) {
-        super(context, R.layout.row_layout_2, postList);
-        this.postsList = postList;
+    public ChefAdapter(Context context, ArrayList<post> userList) {
+        super(context, R.layout.row_layout_2, userList);
+        this.usersList = userList;
     }
 
     @Override
@@ -25,23 +25,23 @@ class myAdapter extends ArrayAdapter<post> {
         @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_2, parent, false);
 
         TextView desc = (TextView) theView.findViewById(R.id.desc);
-        desc.setText(postsList.get(position).getDescription());
+        desc.setText(usersList.get(position).getDescription());
 
         TextView title = (TextView) theView.findViewById(R.id.textView1);
 
-        title.setText(postsList.get(position).getTitle());
+        title.setText(usersList.get(position).getTitle());
 
         TextView likes = (TextView) theView.findViewById(R.id.likesView);
-        likes.setText(String.valueOf(postsList.get(position).getLikes()));
+        likes.setText(String.valueOf(usersList.get(position).getLikes()));
 
         TextView userView = (TextView) theView.findViewById(R.id.userPostView);
-        userView.setText(postsList.get(position).getUserName());
+        userView.setText(usersList.get(position).getUserName());
 
 
         // 11. Set the image resource to the celestial object image
 
         ImageView imageView = (ImageView) theView.findViewById(R.id.imageView1);
-        int imgResource = activity.getImgLocation(postsList.get(position).getImg());
+        int imgResource = activity.getImgLocation(usersList.get(position).getImg());
         if (imgResource != 0)
             imageView.setImageResource(imgResource);
         else
