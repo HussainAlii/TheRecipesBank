@@ -3,18 +3,32 @@ package com.example.therecipesbank;
 public class post {
     private String title       = "";
     private String post_id     = "";
-    private String description        = "";
+    private String description = "";
     private String img         = "";
-    private String user_id     = "";
-    private int likes        = 0;
+    private String username    = "";
+    private int user_id        = -1;
+    private int likes          = 0;
 
-    public post(String title, String post_id, String description, String img, String user_id, int likes) {
+    public post(String title, String post_id, String description, String img, int user_id,String username, int likes) {
         this.title = title;
         this.post_id = post_id;
         this.description = description;
         this.img = img;
         this.user_id = user_id;
         this.likes = likes;
+        this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "post{" +
+                "title='" + title + '\'' +
+                ", post_id='" + post_id + '\'' +
+                ", description='" + description + '\'' +
+                ", img='" + img + '\'' +
+                ", user_id=" + user_id +
+                ", likes=" + likes +
+                '}';
     }
 
     public String getTitle() {
@@ -57,11 +71,19 @@ public class post {
         this.img = img;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
     }
 }

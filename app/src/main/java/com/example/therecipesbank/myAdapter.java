@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class myAdapter extends ArrayAdapter<String> {
+class myAdapter extends ArrayAdapter<post> {
     ArrayList<post> postsList =null;
     public myAdapter(Context context, ArrayList<post> postList) {
-        super(context, R.layout.row_layout_2);
+        super(context, R.layout.row_layout_2, postList);
         this.postsList = postList;
     }
 
@@ -31,7 +31,10 @@ class myAdapter extends ArrayAdapter<String> {
         title.setText(postsList.get(position).getTitle());
 
         TextView likes = (TextView) theView.findViewById(R.id.likesView);
-        likes.setText(postsList.get(position).getLikes());
+        likes.setText(String.valueOf(postsList.get(position).getLikes()));
+
+        TextView userView = (TextView) theView.findViewById(R.id.userPostView);
+        userView.setText(postsList.get(position).getUserName());
 
         ImageView imageView = (ImageView) theView.findViewById(R.id.imageView1);
 

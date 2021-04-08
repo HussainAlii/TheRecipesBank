@@ -85,13 +85,10 @@ public class Popular extends Fragment {
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
         Button trendsButton = view.findViewById(R.id.popular_trendsButton);
 
-        ArrayList<post> postList = new ArrayList<>();
-        postList.add(new post("apple","1","yammy","123","1",100));
+        ArrayList<post> postList = MainActivity.dbHandler.getLatestPosts();
         ListAdapter theAdapter = new myAdapter(getContext(), postList);
-
         ListView trendList = view.findViewById(R.id.trendsList);
         trendList.setAdapter(theAdapter);
-        System.out.println("--------");
         trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

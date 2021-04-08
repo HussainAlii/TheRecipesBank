@@ -36,28 +36,55 @@ tools:context=".MainActivity">
         android:text="This is a nice food, that is created by me..."
         android:paddingLeft="10dp" />
 </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/heart" />
-
-        <TextView
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/likesView"
-            android:textSize="11sp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="0" />
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/heart" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likesView"
+                android:textSize="11sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:text="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/user" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userPostView"
+                android:textSize="11sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:text="name" />
+
+        </LinearLayout>
     </LinearLayout>
+
 
 
 </LinearLayout>
