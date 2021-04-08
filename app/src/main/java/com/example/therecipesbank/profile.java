@@ -139,9 +139,8 @@ public class profile extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //set new profile info here from the database
-
-                Toast.makeText(getContext(),  "Yo yo yo !", Toast.LENGTH_LONG).show();
+                MainActivity.dbHandler.updateUserProfile(usernameEdtTxt.getText().toString(), emailEdtTxt.getText().toString(), passEdtTxt.getText().toString());
+                Toast.makeText(getContext(),  "Your changes have been applied", Toast.LENGTH_LONG).show();
             }
         });
 
