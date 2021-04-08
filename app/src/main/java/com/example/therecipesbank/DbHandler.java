@@ -210,15 +210,17 @@ public class DbHandler extends SQLiteOpenHelper {
         return postList;
     }
 
-    public ArrayList getFavoriteList() {
+    public ArrayList<post> getFavoriteList(int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<post> postList = new ArrayList<>();
-
-        String query = "SELECT * FROM "+POST_TABLE+" order by "+POST_ID+" desc ";
+        //SELECT  distinct posts.title , posts.description , posts.img, Chefs.username  from posts, favs, Chefs where favs.user_id = 2 and favs.rec_id = posts.post_id and Chefs.id = posts.user_id yay
+        String query = "SELECT distinct favs.user_id, posts.likes, posts.title, posts.post_id, posts.user_id, posts.description, posts.img, Chefs.username FROM posts, favs, Chefs WHERE favs.user_id = "+userId+" and favs.rec_id = posts.post_id and Chefs.id = posts.user_id";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
-
+            // ||| SELECT  username , email, posts.title, posts.description, posts.img  from Chefs , favs, posts where  favs.user_id= 1 and favs.rec_id = posts.user_id and Chefs.id = posts.user_id
                 //SELECT  username , email, posts.title, posts.description, posts.img  from Chefs , favs, posts where    Chefs.id = posts.user_id  this shows the whole favorite list
+            //SELECT  distinct posts.title , posts.description , posts.img  from posts, favs where favs.user_id = 1  and favs.rec_id = posts.post_id  <--GUCCI
+
             postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
@@ -227,8 +229,7 @@ public class DbHandler extends SQLiteOpenHelper {
                     cursor.getString((cursor.getColumnIndex(KEY_Username))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
             ));
-            // dataHash.put(DESC, cursor.getString((cursor.getColumnIndex(DESC))));
-            // dataHash.put(IMG, cursor.getString((cursor.getColumnIndex(IMG))));
+
         }
         return postList;
     }
