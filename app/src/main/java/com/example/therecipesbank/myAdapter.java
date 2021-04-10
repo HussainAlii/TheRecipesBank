@@ -41,15 +41,15 @@ class myAdapter extends ArrayAdapter<post> {
         // 11. Set the image resource to the celestial object image
 
         ImageView imageView = (ImageView) theView.findViewById(R.id.imageView1);
-        String imgLocation = postsList.get(position).getImg();
-        if (!imgLocation.equals("")){
-            int imgResource = activity.getImgLocation(postsList.get(position).getImg());
-            if (imgResource != 0)
-                imageView.setImageResource(imgResource);
-        }
-        else {
+//        String imgLocation = postsList.get(position).getImg();
+//        if (!imgLocation.equals("")){
+//            int imgResource = activity.getImgLocation(postsList.get(position).getImg());
+//            if (imgResource != 0)
+//                imageView.setImageResource(imgResource);
+//        }
+//        else {
             imageView.setImageResource(R.drawable.pizza);
-        }
+//        }
         return theView;
     }
 }
