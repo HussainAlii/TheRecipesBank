@@ -15,12 +15,14 @@ import java.util.HashMap;
 
 public class DbHandler extends SQLiteOpenHelper {
      static final int DB_VERSION = 5;
+     static final String KEY_FOLLOWERS = "followers";
      static final String DB_NAME = "theRecipesBank";
      static final String USER_TABLE = "Chefs";
      static final String KEY_ID = "id";
      static final String KEY_Username = "username";
      static final String KEY_Email = "email";
      static final String KEY_Password = "password";
+
 
     private static final String POST_TABLE  = "posts";
     private static final String TITLE       = "title";
@@ -34,6 +36,13 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String F_ENTRY_ID  = "id";
     private static final String F_USER_ID   = "user_id";
     private static final String REC_ID      = "rec_id";
+
+    //Subscription table
+    private static final String SUBSCRIPTION_TABLE   = "subscriptions";
+    private static final String S_ENTRY_ID   = "id";
+    private static final String SUBSCRIBER  = "subscriber_id";
+    private static final String SUBSCRIBED_TO   = "subscribed_to";
+
 
 
 
@@ -49,6 +58,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 KEY_Username + " TEXT,"+
                 KEY_Email + " TEXT,"+
+                KEY_FOLLOWERS + " INTEGER,"+
                 KEY_Password + " TEXT" + ")";
                 db.execSQL(CREATE_TABLE);
 
@@ -72,11 +82,19 @@ public class DbHandler extends SQLiteOpenHelper {
                 ", FOREIGN KEY ("+REC_ID+") REFERENCES "+ POST_TABLE+"("+POST_ID+")"+
                 ")";
 
+        String createSubTableQuery = "CREATE TABLE IF NOT EXISTS " + SUBSCRIPTION_TABLE + "(" +
+                S_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SUBSCRIBER +" INTEGER,"+
+                SUBSCRIBED_TO +" INTEGER,"+
+                " FOREIGN KEY ("+SUBSCRIBER+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
+                ", FOREIGN KEY ("+SUBSCRIBED_TO+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
+                ")";
 
 
         db.execSQL(CREATE_TABLE);
         db.execSQL(createPostTableQuery);
         db.execSQL(createFavTableQuery);
+        db.execSQL(createSubTableQuery);
 
     }
 
@@ -236,6 +254,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
     public ArrayList<post> getLatestChefs(int username) {
-        return null;
+
+        return new ArrayList<post>();
     }
 }
