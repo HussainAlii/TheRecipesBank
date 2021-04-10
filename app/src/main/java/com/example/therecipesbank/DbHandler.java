@@ -296,7 +296,7 @@ public class DbHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         int likes = 0;
         while (cursor.moveToNext()){
-           likes = cursor.getInt((cursor.getColumnIndex(Likes)));
+            likes = cursor.getInt((cursor.getColumnIndex(Likes)));
         }
         contentValues.put(Likes, ++likes);
         db.update(POST_TABLE, contentValues, "post_id=?", new String[]{String.valueOf(postId)});
@@ -306,6 +306,27 @@ public class DbHandler extends SQLiteOpenHelper {
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(FAV_TABLE,null, cValues);
+    }
+
+    public void unlike(int postId, int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        ContentValues cValues = new ContentValues();
+
+        String query = "SELECT likes from "+POST_TABLE+" WHERE "+POST_ID +" =  "+postId;
+        Cursor cursor = db.rawQuery(query, null);
+        int likes = 0;
+        while (cursor.moveToNext()){
+            likes = cursor.getInt((cursor.getColumnIndex(Likes)));
+        }
+        contentValues.put(Likes, --likes);
+        db.update(POST_TABLE, contentValues, "post_id=?", new String[]{String.valueOf(postId)});
+
+        cValues.put(F_USER_ID, userId);
+        cValues.put(REC_ID, postId);
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.delete(FAV_TABLE,KEY_ID + "=" + userId + " and "+ POST_ID + " = "+postId, null);
     }
 
     public void subscribe(int subscriberId, int subbedToId){

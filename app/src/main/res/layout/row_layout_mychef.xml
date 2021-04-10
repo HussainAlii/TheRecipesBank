@@ -48,9 +48,8 @@ tools:context=".MainActivity">
                 android:id="@+id/followersView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginTop="35dp"
-                android:text="Followers\n0"
+                android:text="UnFollowers\n0"
                 android:focusable="false"
                 android:textSize="11sp" />
 
