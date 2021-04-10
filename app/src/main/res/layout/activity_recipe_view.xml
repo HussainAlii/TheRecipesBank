@@ -65,7 +65,7 @@
                     app:layout_row="0"
                     app:layout_rowWeight="1" />
                 <Button
-                    android:id="@+id/like"
+                    android:id="@+id/likeButton"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="32dp"
                     android:layout_height="30dp"

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     static String Password ="";
     static int UserId=-1;
     static chefs selectedChef =null;
+    static post selectedPost =null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

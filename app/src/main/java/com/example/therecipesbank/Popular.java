@@ -1,5 +1,6 @@
 package com.example.therecipesbank;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -92,7 +93,9 @@ public class Popular extends Fragment {
         trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                (post)adapterView.getItemAtPosition(position)
+                MainActivity.selectedPost = (post)adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(getContext(), recipeView.class);
+                startActivity(intent);
             }
         });
         
