@@ -130,7 +130,7 @@ public class createRes extends Fragment {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, 1);
-                imgLocation = "";
+                imgLocation = "gh";
             }
         });
 

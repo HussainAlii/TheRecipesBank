@@ -22,7 +22,7 @@ class ChefAdapter extends ArrayAdapter<chefs> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_2, parent, false);
+        @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_mychef, parent, false);
 
         TextView title = (TextView) theView.findViewById(R.id.chef_username_field);
         title.setText(usersList.get(position).getUsername());

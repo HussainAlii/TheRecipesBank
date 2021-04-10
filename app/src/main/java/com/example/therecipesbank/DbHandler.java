@@ -257,7 +257,8 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<chefs> userList = new ArrayList<>();
 
-        String query = "SELECT username, followers from Chefs, subscriptions.subscriber_id = "+ID+" and subscriptions.subscribed_to = Chefs.id desc";
+        String query = "SELECT username, followers from Chefs,subscriptions WHERE subscriptions.subscriber_id = "+ID+" and subscriptions.subscribed_to = Chefs.id ORDER BY subscriptions.id desc";
+
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
             userList.add(new chefs(cursor.getString((cursor.getColumnIndex(KEY_Username))), cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS)))));
