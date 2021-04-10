@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,7 +89,9 @@ public class favList extends Fragment {
         fav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //adapterView.getItemAtPosition(position)
+                MainActivity.selectedPost = (post)adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(getContext(), recipeView.class);
+                startActivity(intent);
             }
         });
 
