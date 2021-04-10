@@ -92,7 +92,7 @@ public class Popular extends Fragment {
         trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //adapterView.getItemAtPosition(position)
+//                (post)adapterView.getItemAtPosition(position)
             }
         });
         

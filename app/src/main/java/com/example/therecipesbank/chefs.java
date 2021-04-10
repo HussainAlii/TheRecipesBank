@@ -3,10 +3,20 @@ package com.example.therecipesbank;
 public class chefs {
     private String username ="";
     private int followers = -1;
+    private int user_id = -1;
 
-    public chefs(String username, int followers) {
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public chefs(String username, int followers, int user_id) {
         this.username = username;
         this.followers = followers;
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -25,5 +35,11 @@ public class chefs {
         this.followers = followers;
     }
 
-
+    @Override
+    public String toString() {
+        return "chefs{" +
+                "username='" + username + '\'' +
+                ", followers=" + followers +
+                '}';
+    }
 }

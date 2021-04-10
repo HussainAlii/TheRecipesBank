@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,15 +75,15 @@ public class chefsRecList extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        ArrayList<post> postList = MainActivity.dbHandler.getLatestPosts();
-        ListAdapter theAdapter = new myAdapter(getContext(), postList);
-        ListView trendList = view.findViewById(R.id.chefPostList);
-        trendList.setAdapter(theAdapter);
-        trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        ArrayList<post> postList = MainActivity.dbHandler.getPostsByChef(MainActivity.selectedChef.getUser_id());
+        ListAdapter theAdapter = new chefsRecAdapter(getContext(), postList);
+        ListView chefsRecList = view.findViewById(R.id.chefPostList);
+        chefsRecList.setAdapter(theAdapter);
+        chefsRecList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //adapterView.getItemAtPosition(position)
+                navController.navigate(R.id.action_chefsRecList_to_myChefs);
             }
         });
     }

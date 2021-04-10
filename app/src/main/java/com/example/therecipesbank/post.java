@@ -19,6 +19,15 @@ public class post {
         this.username = username;
     }
 
+    public post(String post_id, String title, String description, String img, int user_id, int likes) {
+        this.title = title;
+        this.post_id = post_id;
+        this.description = description;
+        this.img = img;
+        this.user_id = user_id;
+        this.likes = likes;
+    }
+
     @Override
     public String toString() {
         return "post{" +

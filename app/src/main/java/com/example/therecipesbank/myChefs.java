@@ -83,7 +83,7 @@ public class myChefs extends Fragment {
         Button favButton = view.findViewById(R.id.myChefs_favButton);
         Button myChefsButton = view.findViewById(R.id.myChefs_myChefsButton);
         Button trendsButton = view.findViewById(R.id.myChefs_trendsButton);
-
+        final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         ArrayList<chefs> userList = MainActivity.dbHandler.getLatestChefs(MainActivity.UserId);
         ListAdapter chefAdapter = new ChefAdapter(getContext(), userList);
         ListView ChefsList = view.findViewById(R.id.myChefsList);
@@ -91,12 +91,10 @@ public class myChefs extends Fragment {
         ChefsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //adapterView.getItemAtPosition(position)
+                MainActivity.selectedChef = (chefs) adapterView.getItemAtPosition(position);
+                navController.navigate(R.id.action_myChefs_to_chefsRecList);
             }
         });
-
-        final NavController navController = Navigation.findNavController(getActivity(),
-                R.id.nav_host_fragment);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override

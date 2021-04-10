@@ -257,11 +257,10 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<chefs> userList = new ArrayList<>();
 
-        String query = "SELECT username, followers from Chefs,subscriptions WHERE subscriptions.subscriber_id = "+ID+" and subscriptions.subscribed_to = Chefs.id ORDER BY subscriptions.id desc";
-
+        String query = "SELECT username, followers, subscribed_to from Chefs,subscriptions WHERE subscriptions.subscriber_id = "+ID+" and subscriptions.subscribed_to = Chefs.id ORDER BY subscriptions.id desc";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
-            userList.add(new chefs(cursor.getString((cursor.getColumnIndex(KEY_Username))), cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS)))));
+            userList.add(new chefs(cursor.getString((cursor.getColumnIndex(KEY_Username))), cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS))),cursor.getInt((cursor.getColumnIndex(SUBSCRIBED_TO)))));
     }
         return userList;
     }
@@ -270,7 +269,7 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<post> postList = new ArrayList<>();
 
-        String query = "SELECT posts.post_id posts.title, posts.description, posts.img, posts.user_id, posts.likes FROM posts where posts.user_id =  "+userId +" order by post.post_id DESC";
+        String query = "SELECT posts.post_id, posts.title, posts.description, posts.img, posts.user_id, posts.likes FROM posts where posts.user_id = "+userId +" order by posts.post_id DESC";
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
 
@@ -279,7 +278,6 @@ public class DbHandler extends SQLiteOpenHelper {
                     cursor.getString((cursor.getColumnIndex(DESC))),
                     cursor.getString((cursor.getColumnIndex(IMG))),
                     cursor.getInt((cursor.getColumnIndex(USER_ID))),
-                    cursor.getString((cursor.getColumnIndex(KEY_Username))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
             ));
 
