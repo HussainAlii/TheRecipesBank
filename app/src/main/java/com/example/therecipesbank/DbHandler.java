@@ -353,8 +353,7 @@ public class DbHandler extends SQLiteOpenHelper {
     public boolean isSubscribedTo(int subscriberId, int subbedToId){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "SELECT "+S_ENTRY_ID+" WHERE "+SUBSCRIBER+" ="+subscriberId+" and "+SUBSCRIBED_TO+" = "+subbedToId;
-        System.out.println(query);
+        String query = "SELECT "+S_ENTRY_ID+" From "+SUBSCRIPTION_TABLE+" WHERE "+SUBSCRIBER+" ="+subscriberId+" and "+SUBSCRIBED_TO+" = "+subbedToId;
         Cursor cursor = db.rawQuery(query, null);
 
         return  cursor.getCount() != 0;
@@ -375,7 +374,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
 
-        String query = "SELECT "+KEY_FOLLOWERS+" from "+USER_TABLE+"  WHERE "+KEY_ID+" = "+subbedToId;
+        String query = "SELECT "+KEY_FOLLOWERS+" FROM "+USER_TABLE+"  WHERE "+KEY_ID+" = "+subbedToId;
 
         Cursor cursor = db.rawQuery(query, null);
 

@@ -1,11 +1,13 @@
 package com.example.therecipesbank;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +29,14 @@ class ChefAdapter extends ArrayAdapter<chefs> {
         TextView username = (TextView) theView.findViewById(R.id.chef_username_field);
         username.setText(usersList.get(position).getUsername());
 
-        TextView followers = (TextView) theView.findViewById(R.id.followersView);
-        followers.setText("UnFollowers\n"+String.valueOf(usersList.get(position).getFollowers()));
+        Button followersButton = theView.findViewById(R.id.unFollowButton);
+        followersButton.setText("UnFollow\n"+String.valueOf(usersList.get(position).getFollowers()));
+        followersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.dbHandler.unsubscribe(MainActivity.UserId,usersList.get(position).getUser_id());
+            }
+        });
 
 
         return theView;

@@ -25,6 +25,7 @@ public class recipeView extends AppCompatActivity {
         if(MainActivity.dbHandler.isLiked(MainActivity.UserId,Integer.parseInt(MainActivity.selectedPost.getPost_id())));
             button.setBackgroundResource(R.drawable.redheart);
 
+
         button = findViewById(R.id.likeButton);
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
