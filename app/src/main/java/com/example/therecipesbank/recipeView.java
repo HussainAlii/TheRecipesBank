@@ -18,15 +18,14 @@ public class recipeView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_view);
+        button = findViewById(R.id.likeButton);
 
         if(MainActivity.dbHandler.isSubscribedTo(MainActivity.UserId,MainActivity.selectedPost.getUser_id()))
             subButton.setVisibility(View.INVISIBLE);
 
-        if(MainActivity.dbHandler.isLiked(MainActivity.UserId,Integer.parseInt(MainActivity.selectedPost.getPost_id())));
+        if(MainActivity.dbHandler.isLiked(MainActivity.UserId,Integer.parseInt(MainActivity.selectedPost.getPost_id())))
             button.setBackgroundResource(R.drawable.redheart);
 
-
-        button = findViewById(R.id.likeButton);
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
