@@ -19,6 +19,7 @@ public class recipeView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_view);
         button = findViewById(R.id.likeButton);
+        subButton = findViewById(R.id.subscribeButton);
 
         if(MainActivity.dbHandler.isSubscribedTo(MainActivity.UserId,MainActivity.selectedPost.getUser_id()))
             subButton.setVisibility(View.INVISIBLE);
@@ -41,7 +42,6 @@ public class recipeView extends AppCompatActivity {
             }
         });
 
-        subButton = findViewById(R.id.subscribeButton);
         subButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
