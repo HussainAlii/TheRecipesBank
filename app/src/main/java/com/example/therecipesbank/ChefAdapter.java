@@ -28,7 +28,7 @@ class ChefAdapter extends ArrayAdapter<chefs> {
         username.setText(usersList.get(position).getUsername());
 
         TextView followers = (TextView) theView.findViewById(R.id.followersView);
-        followers.setText("Followers\n"+String.valueOf(usersList.get(position).getFollowers()));
+        followers.setText("UnFollowers\n"+String.valueOf(usersList.get(position).getFollowers()));
 
 
         return theView;
