@@ -1,5 +1,6 @@
 package com.example.therecipesbank;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -83,6 +84,7 @@ public class chefsRecList extends Fragment {
         chefsRecList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                MainActivity.selectedPost = (post)adapterView.getItemAtPosition(position);
                 navController.navigate(R.id.action_chefsRecList_to_myChefs);
             }
         });
