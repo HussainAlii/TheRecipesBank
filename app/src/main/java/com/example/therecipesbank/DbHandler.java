@@ -306,6 +306,15 @@ public class DbHandler extends SQLiteOpenHelper {
         long newRowId = db.insert(FAV_TABLE,null, cValues);
     }
 
+    public void subscribe(int subscriberId, int subbedToId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cValues = new ContentValues();
+        cValues.put(SUBSCRIBER, subscriberId);
+        cValues.put(SUBSCRIBED_TO, subbedToId);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(SUBSCRIPTION_TABLE,null, cValues);
+    }
+
 
 
 
