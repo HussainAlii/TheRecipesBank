@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        dbHandler.addToFavs(2, 1);
     }
 
     public void loginPage(View view){
