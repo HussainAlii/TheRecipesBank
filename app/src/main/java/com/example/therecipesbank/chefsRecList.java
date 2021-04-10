@@ -85,7 +85,8 @@ public class chefsRecList extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 MainActivity.selectedPost = (post)adapterView.getItemAtPosition(position);
-                navController.navigate(R.id.action_chefsRecList_to_myChefs);
+                Intent intent = new Intent(getContext(), recipeView.class);
+                startActivity(intent);
             }
         });
     }

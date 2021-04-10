@@ -114,6 +114,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cValues.put(KEY_Username, username);
         cValues.put(KEY_Password, password);
         cValues.put(KEY_Email, email);
+        cValues.put(KEY_FOLLOWERS, 0);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(USER_TABLE,null, cValues);
     }
@@ -156,6 +157,7 @@ public class DbHandler extends SQLiteOpenHelper {
             dataHash.put(KEY_Username, cursor.getString((cursor.getColumnIndex(KEY_Username))));
             dataHash.put(KEY_Password, cursor.getString((cursor.getColumnIndex(KEY_Password))));
             dataHash.put(KEY_Email, cursor.getString((cursor.getColumnIndex(KEY_Email))));
+            MainActivity.Followers= cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS)));
             dataList.add(dataHash);
         }
         return dataList;
