@@ -22,10 +22,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Intent intent = getIntent();
-        if (intent.getSerializableExtra("isFirstLogin").toString().equals("true")) {
-            Snackbar.make(findViewById(R.id.Activity2), "Welcome to The Recipes Bank Chef " + MainActivity.Username,
-                    Snackbar.LENGTH_SHORT)
-                    .show();
-        }
+//        if (intent.getSerializableExtra("isFirstLogin").toString().equals("true")) {
+//            Snackbar.make(findViewById(R.id.Activity2), "Welcome to The Recipes Bank Chef " + MainActivity.Username,
+//                    Snackbar.LENGTH_SHORT)
+//                    .show();
+//        }
     }
 }
