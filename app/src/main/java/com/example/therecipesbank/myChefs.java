@@ -84,7 +84,7 @@ public class myChefs extends Fragment {
         Button myChefsButton = view.findViewById(R.id.myChefs_myChefsButton);
         Button trendsButton = view.findViewById(R.id.myChefs_trendsButton);
 
-        ArrayList<post> userList = MainActivity.dbHandler.getLatestChefs(Integer.parseInt(MainActivity.Username));
+        ArrayList<chefs> userList = MainActivity.dbHandler.getLatestChefs(MainActivity.UserId);
         ListAdapter chefAdapter = new ChefAdapter(getContext(), userList);
         ListView ChefsList = view.findViewById(R.id.myChefsList);
         ChefsList.setAdapter(chefAdapter);

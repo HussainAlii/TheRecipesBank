@@ -235,7 +235,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<post> getLatestChefs(int username) {
+    public ArrayList<chefs> getLatestChefs(int ID) {
         return null;
     }
 }
