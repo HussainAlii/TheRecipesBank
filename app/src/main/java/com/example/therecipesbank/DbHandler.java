@@ -287,6 +287,35 @@ public class DbHandler extends SQLiteOpenHelper {
         return postList;
     }
 
+    public void addToFavs(int postId, int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        ContentValues cValues = new ContentValues();
+
+        String query = "SELECT likes from "+POST_TABLE+" WHERE "+POST_ID +" =  "+postId;
+        Cursor cursor = db.rawQuery(query, null);
+        int likes = 0;
+        while (cursor.moveToNext()){
+           likes = cursor.getInt((cursor.getColumnIndex(Likes)));
+        }
+        contentValues.put(Likes, ++likes);
+        db.update(POST_TABLE, contentValues, "post_id=?", new String[]{String.valueOf(postId)});
+
+        cValues.put(F_USER_ID, userId);
+        cValues.put(REC_ID, postId);
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(FAV_TABLE,null, cValues);
+    }
+
+    public void subscribe(int subscriberId, int subbedToId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cValues = new ContentValues();
+        cValues.put(SUBSCRIBER, subscriberId);
+        cValues.put(SUBSCRIBED_TO, subbedToId);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(SUBSCRIPTION_TABLE,null, cValues);
+    }
 
 
 
