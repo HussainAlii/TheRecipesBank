@@ -265,4 +265,31 @@ public class DbHandler extends SQLiteOpenHelper {
     }
         return userList;
     }
+
+    public ArrayList<post> getPostsByChef(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<post> postList = new ArrayList<>();
+
+        String query = "SELECT posts.post_id posts.title, posts.description, posts.img, posts.user_id, posts.likes FROM posts where posts.user_id =  "+userId +" order by post.post_id DESC";
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+
+            postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
+                    cursor.getString((cursor.getColumnIndex(TITLE))),
+                    cursor.getString((cursor.getColumnIndex(DESC))),
+                    cursor.getString((cursor.getColumnIndex(IMG))),
+                    cursor.getInt((cursor.getColumnIndex(USER_ID))),
+                    cursor.getString((cursor.getColumnIndex(KEY_Username))),
+                    cursor.getInt((cursor.getColumnIndex(Likes)))
+            ));
+
+        }
+        return postList;
+    }
+
+
+
+
+
+
 }
