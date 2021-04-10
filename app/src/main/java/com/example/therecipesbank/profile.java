@@ -94,12 +94,12 @@ public class profile extends Fragment {
         EditText emailEdtTxt         = view.findViewById(R.id.email_field);
         EditText passEdtTxt          = view.findViewById(R.id.password_field);
 
-        TextView followersTxt        = view.findViewById(R.id.followersView);
+        TextView followersTxt        = view.findViewById(R.id.followers);
 
         usernameEdtTxt.setText(MainActivity.Username);
         emailEdtTxt.setText(MainActivity.Email);
         passEdtTxt.setText(MainActivity.Password);
-        followersTxt.setText(MainActivity.Followers);
+        followersTxt.setText("Followers: "+String.valueOf(MainActivity.Followers));
 
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
