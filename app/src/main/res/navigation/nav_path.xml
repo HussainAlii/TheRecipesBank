@@ -94,5 +94,17 @@
         <action
             android:id="@+id/action_myChefs_to_createRes"
             app:destination="@id/createRes" />
+        <action
+            android:id="@+id/action_myChefs_to_chefsRecList"
+            app:destination="@id/chefsRecList" />
+    </fragment>
+    <fragment
+        android:id="@+id/chefsRecList"
+        android:name="com.example.therecipesbank.chefsRecList"
+        android:label="fragment_chefs_rec_list"
+        tools:layout="@layout/fragment_chefs_rec_list" >
+        <action
+            android:id="@+id/action_chefsRecList_to_myChefs"
+            app:destination="@id/myChefs" />
     </fragment>
 </navigation>
