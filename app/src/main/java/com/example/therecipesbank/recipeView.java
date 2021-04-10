@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class recipeView extends AppCompatActivity {
     Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,10 @@ public class recipeView extends AppCompatActivity {
                 }
             }
         });
+        TextView title  = findViewById(R.id.viewRTitle);
+        TextView desc = findViewById(R.id.viewRDesc);
+        title.setText(MainActivity.selectedPost.getTitle());
+        desc.setText(MainActivity.selectedPost.getDescription());
     }
 
 
