@@ -311,11 +311,24 @@ public class DbHandler extends SQLiteOpenHelper {
     public void subscribe(int subscriberId, int subbedToId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cValues = new ContentValues();
+        ContentValues contentValues = new ContentValues();
         cValues.put(SUBSCRIBER, subscriberId);
         cValues.put(SUBSCRIBED_TO, subbedToId);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(SUBSCRIPTION_TABLE,null, cValues);
+
+        String query = "SELECT "+KEY_FOLLOWERS+" from "+USER_TABLE+" WHERE "+KEY_ID+" = "+subbedToId;
+        Cursor cursor = db.rawQuery(query, null);
+        int followersCount = 0;
+
+        while (cursor.moveToNext()){
+            followersCount = cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS)));
+        }
+
+        contentValues.put(KEY_FOLLOWERS, ++followersCount);
+        db.update(USER_TABLE, contentValues, "id=?", new String[]{String.valueOf(subbedToId)});
     }
+
 
 
 
