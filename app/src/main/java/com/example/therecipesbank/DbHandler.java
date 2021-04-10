@@ -331,16 +331,43 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public boolean isSubscribedTo(int subscriberId, int subbedToId){
         SQLiteDatabase db = this.getWritableDatabase();
+
         String query = "SELECT "+S_ENTRY_ID+" WHERE "+SUBSCRIBER+" ="+subscriberId+" and "+SUBSCRIBED_TO+" = "+subbedToId;
+
         Cursor cursor = db.rawQuery(query, null);
+
         return  cursor.getCount() != 0;
     }
 
     public boolean isLiked(int subscriberId, int postId){
         SQLiteDatabase db = this.getWritableDatabase();
+
         String query = "SELECT id FROM "+FAV_TABLE+" WHERE "+F_USER_ID+" = "+subscriberId+" and "+REC_ID+" = "+postId;
+
         Cursor cursor = db.rawQuery(query, null);
+
         return  cursor.getCount() != 0;
+    }
+
+    public void unsubscribe(int subscriberId, int subbedToId){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        String query = "SELECT "+KEY_FOLLOWERS+" from "+USER_TABLE+"  WHERE "+KEY_ID+" = "+subbedToId;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        int followersCount = 0;
+
+        while (cursor.moveToNext()){
+            followersCount = cursor.getInt((cursor.getColumnIndex(KEY_FOLLOWERS)));
+        }
+        contentValues.put(KEY_FOLLOWERS, --followersCount);
+
+        db.update(USER_TABLE, contentValues, "id=?", new String[]{String.valueOf(subbedToId)});
+
+        db.execSQL("delete from "+SUBSCRIPTION_TABLE+" WHERE "+SUBSCRIBER+" = "+subscriberId+" and "+SUBSCRIBED_TO+" = "+subbedToId);
     }
 
 
