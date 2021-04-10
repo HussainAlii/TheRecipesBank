@@ -24,11 +24,11 @@ class ChefAdapter extends ArrayAdapter<chefs> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         @SuppressLint("ViewHolder") View theView = inflater.inflate(R.layout.row_layout_mychef, parent, false);
 
-        TextView title = (TextView) theView.findViewById(R.id.chef_username_field);
-        title.setText(usersList.get(position).getUsername());
+        TextView username = (TextView) theView.findViewById(R.id.chef_username_field);
+        username.setText(usersList.get(position).getUsername());
 
-        TextView likes = (TextView) theView.findViewById(R.id.followersView);
-        likes.setText(String.valueOf(usersList.get(position).getFollowers()));
+        TextView followers = (TextView) theView.findViewById(R.id.followersView);
+        followers.setText("Followers\n"+String.valueOf(usersList.get(position).getFollowers()));
 
 
         return theView;

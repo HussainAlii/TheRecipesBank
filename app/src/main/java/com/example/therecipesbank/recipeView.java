@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class recipeView extends AppCompatActivity {
-    Button button;
+    Button button,subButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,15 @@ public class recipeView extends AppCompatActivity {
                 else if(button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.redheart).getConstantState())){
                     button.setBackgroundResource(R.drawable.heart);
                 }
+            }
+        });
+
+        subButton = findViewById(R.id.subscribeButton);
+        subButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                subButton.setVisibility(View.INVISIBLE);
             }
         });
         TextView title  = findViewById(R.id.viewRTitle);

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     static String Username = "";
     static String Email = "";
     static String Password ="";
+    static int Followers =0;
     static int UserId=-1;
     static chefs selectedChef =null;
     static post selectedPost =null;
