@@ -25,7 +25,9 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class favList extends Fragment {
-
+    ArrayList<post> postList=null;
+    ListView fav_list = null;
+    ListAdapter theAdapter =null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -81,10 +83,10 @@ public class favList extends Fragment {
         Button favButton = view.findViewById(R.id.favList_favButton);
         Button myChefsButton = view.findViewById(R.id.favList_myChefsButton);
         Button trendsButton = view.findViewById(R.id.favList_trendsButton);
+        fav_list = view.findViewById(R.id.favList_List);
 
-        ArrayList<post> postList = MainActivity.dbHandler.getFavoriteList(MainActivity.UserId);
-        ListAdapter theAdapter = new myAdapter(getContext(), postList);
-        ListView fav_list = view.findViewById(R.id.favList_List);
+        postList = MainActivity.dbHandler.getFavoriteList(MainActivity.UserId);
+        theAdapter = new myAdapter(getContext(), postList);
         fav_list.setAdapter(theAdapter);
         fav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -132,5 +134,13 @@ public class favList extends Fragment {
                 navController.navigate(R.id.action_favList_to_popular);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        postList = MainActivity.dbHandler.getFavoriteList(MainActivity.UserId);
+        theAdapter = new myAdapter(getContext(), postList);
+        fav_list.setAdapter(theAdapter);
     }
 }

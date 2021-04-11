@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     static int UserId=-1;
     static chefs selectedChef =null;
     static post selectedPost =null;
+    static int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

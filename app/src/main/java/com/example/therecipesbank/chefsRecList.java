@@ -25,7 +25,9 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class chefsRecList extends Fragment {
-
+    ArrayList<post> postList = null;
+    ListAdapter theAdapter =null;
+    ListView chefsRecList =null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -77,9 +79,9 @@ public class chefsRecList extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        ArrayList<post> postList = MainActivity.dbHandler.getPostsByChef(MainActivity.selectedChef.getUser_id());
-        ListAdapter theAdapter = new chefsRecAdapter(getContext(), postList);
-        ListView chefsRecList = view.findViewById(R.id.chefPostList);
+        postList = MainActivity.dbHandler.getPostsByChef(MainActivity.selectedChef.getUser_id());
+        theAdapter = new chefsRecAdapter(getContext(), postList);
+        chefsRecList = view.findViewById(R.id.chefPostList);
         chefsRecList.setAdapter(theAdapter);
         chefsRecList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,5 +91,13 @@ public class chefsRecList extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        postList = MainActivity.dbHandler.getLatestPosts();
+        theAdapter = new chefsRecAdapter(getContext(), postList);
+        chefsRecList.setAdapter(theAdapter);
     }
 }

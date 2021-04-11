@@ -3,6 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="horizontal"
+android:id="@+id/row_chefs"
 tools:context=".MainActivity">
 
 <ImageView
@@ -41,6 +42,7 @@ tools:context=".MainActivity">
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="50dp"
+                android:id="@+id/chefIcon"
                 android:src="@drawable/chef1"
                 />
 

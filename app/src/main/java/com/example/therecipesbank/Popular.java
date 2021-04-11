@@ -29,6 +29,9 @@ import java.util.ArrayList;
  */
 public class Popular extends Fragment {
 
+    ArrayList<post> postList=null;
+    ListView trendList = null;
+    ListAdapter theAdapter =null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,16 +82,14 @@ public class Popular extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         Button profileButton = view.findViewById(R.id.popular_profileButton);
         Button createButton = view.findViewById(R.id.popular_createButton);
         Button favButton = view.findViewById(R.id.popular_favButton);
         Button myChefsButton = view.findViewById(R.id.popular_myChefsButton);
-        Button trendsButton = view.findViewById(R.id.popular_trendsButton);
+        trendList = view.findViewById(R.id.trendsList);
 
-        ArrayList<post> postList = MainActivity.dbHandler.getLatestPosts();
-        ListAdapter theAdapter = new myAdapter(getContext(), postList);
-        ListView trendList = view.findViewById(R.id.trendsList);
+        postList = MainActivity.dbHandler.getLatestPosts();
+        theAdapter = new myAdapter(getContext(), postList);
         trendList.setAdapter(theAdapter);
         trendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -129,5 +130,13 @@ public class Popular extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        postList = MainActivity.dbHandler.getLatestPosts();
+        theAdapter = new myAdapter(getContext(), postList);
+        trendList.setAdapter(theAdapter);
     }
 }

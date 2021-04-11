@@ -26,7 +26,9 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class myChefs extends Fragment {
-
+    ArrayList<chefs> userList=null;
+    ListView ChefsList = null;
+    ListAdapter chefAdapter =null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,10 +85,11 @@ public class myChefs extends Fragment {
         Button favButton = view.findViewById(R.id.myChefs_favButton);
         Button myChefsButton = view.findViewById(R.id.myChefs_myChefsButton);
         Button trendsButton = view.findViewById(R.id.myChefs_trendsButton);
+        ChefsList = view.findViewById(R.id.myChefsList);
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        ArrayList<chefs> userList = MainActivity.dbHandler.getLatestChefs(MainActivity.UserId);
-        ListAdapter chefAdapter = new ChefAdapter(getContext(), userList);
-        ListView ChefsList = view.findViewById(R.id.myChefsList);
+
+        userList = MainActivity.dbHandler.getLatestChefs(MainActivity.UserId);
+        chefAdapter = new ChefAdapter(getContext(), userList);
         ChefsList.setAdapter(chefAdapter);
         ChefsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,5 +133,13 @@ public class myChefs extends Fragment {
                 navController.navigate(R.id.action_myChefs_to_popular);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userList = MainActivity.dbHandler.getLatestChefs(MainActivity.UserId);
+        chefAdapter = new ChefAdapter(getContext(), userList);
+        ChefsList.setAdapter(chefAdapter);
     }
 }

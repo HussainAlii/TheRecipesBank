@@ -3,6 +3,7 @@ package com.example.therecipesbank;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +31,15 @@ class ChefAdapter extends ArrayAdapter<chefs> {
         username.setText(usersList.get(position).getUsername());
 
         Button followersButton = theView.findViewById(R.id.unFollowButton);
+        ImageView chefIcon = theView.findViewById(R.id.chefIcon);
         followersButton.setText("UnFollow\n"+String.valueOf(usersList.get(position).getFollowers()));
         followersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.dbHandler.unsubscribe(MainActivity.UserId,usersList.get(position).getUser_id());
+                followersButton.setVisibility(View.INVISIBLE);
+                chefIcon.setVisibility(View.INVISIBLE);
+                theView.setBackgroundColor(Color.rgb(210,69,100));
             }
         });
 
