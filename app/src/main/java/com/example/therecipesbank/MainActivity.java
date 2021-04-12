@@ -60,7 +60,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int getImgLocation(String imgName){
-        return getResources().getIdentifier("@drawable/"+imgName.toLowerCase(), null, this.getPackageName());
-    }
 }

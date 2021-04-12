@@ -2,6 +2,10 @@ package com.example.therecipesbank;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +36,12 @@ import android.widget.Toast;
 public class createRes extends Fragment {
     static String imgLocation="";
     // TODO: Rename parameter arguments, choose names that match
+    private final int REQUEST_CODE = 1;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private ImageView selectedImageView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -127,10 +140,25 @@ public class createRes extends Fragment {
         uploadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(Intent.createChooser(intent, RESULT_CODE;
+
+                Intent photoPickerIntent = new Intent(getContext(), this.getClass());
+                photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
                 photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, 1);
-                imgLocation = "gh";
+                startActivityForResult(photoPickerIntent,  1);
+                startActivityForResult(Intent.createChooser(photoPickerIntent,"whatever you want",Intent.);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                Bitmap image = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
+                selectedImageView.setDrawingCacheEnabled(true);
+                selectedImageView.buildDrawingCache();
+                Bitmap image = Bitmap.createBitmap(selectedImageView.getDrawingCache());
+                image.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                byte[] b = baos.toByteArray();
+                imgLocation = Base64.encodeToString(b, Base64.DEFAULT);
+//                imgLocation = "gh";
             }
         });
 
@@ -154,5 +182,32 @@ public class createRes extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("*******************************");
+        System.out.println("*******************************");
+        System.out.println("yaay");
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            System.out.println("*******************************");
+            System.out.println("*******************************");
+            System.out.println("yaay222222222222");
+            try {
+                Uri selectedImage = data.getData();//InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
+                selectedImageView.setImageBitmap(BitmapFactory.decodeStream(imageStream));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+//        if (requestCode == camereaReq && resultCode == RESULT_OK) {
+//            Bundle extras = data.getExtras();
+//            Bitmap image = (Bitmap)extras.get("data");
+//            selectedImageView.setImageBitmap(image);
+//        }
+
     }
 }
