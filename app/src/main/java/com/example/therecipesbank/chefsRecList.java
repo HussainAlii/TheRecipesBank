@@ -96,7 +96,7 @@ public class chefsRecList extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        postList = MainActivity.dbHandler.getLatestPosts();
+        postList = MainActivity.dbHandler.getPostsByChef(MainActivity.selectedChef.getUser_id());
         theAdapter = new chefsRecAdapter(getContext(), postList);
         chefsRecList.setAdapter(theAdapter);
     }
