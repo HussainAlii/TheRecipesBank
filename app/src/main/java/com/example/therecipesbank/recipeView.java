@@ -38,7 +38,7 @@ public class recipeView extends AppCompatActivity {
                     MainActivity.dbHandler.addToFavs(Integer.parseInt(MainActivity.selectedPost.getPost_id()),MainActivity.UserId);
                 }
                 else if(button.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.redheart).getConstantState())){
-                    MainActivity.dbHandler.unlike(MainActivity.UserId,MainActivity.selectedPost.getUser_id());
+                    MainActivity.dbHandler.unlike(MainActivity.UserId,Integer.parseInt(MainActivity.selectedPost.getPost_id()));
                     button.setBackgroundResource(R.drawable.heart);
                 }
             }
