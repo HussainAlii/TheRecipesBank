@@ -1,7 +1,10 @@
 package com.example.therecipesbank;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,10 +13,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +82,12 @@ public class createRes extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    Manifest.permission.CAMERA
+            }, 100);
+        }
     }
 
     @Override
@@ -136,28 +148,28 @@ public class createRes extends Fragment {
                 navController.navigate(R.id.action_createRes_to_popular);
             }
         });
-
         uploadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
 //                intent.setType("image/*");
 //                intent.setAction(Intent.ACTION_GET_CONTENT);
 //                startActivityForResult(Intent.createChooser(intent, RESULT_CODE;
 
-                Intent photoPickerIntent = new Intent(getContext(), this.getClass());
-                photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent,  1);
-                startActivityForResult(Intent.createChooser(photoPickerIntent,"whatever you want",Intent.);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                Bitmap image = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
-                selectedImageView.setDrawingCacheEnabled(true);
-                selectedImageView.buildDrawingCache();
-                Bitmap image = Bitmap.createBitmap(selectedImageView.getDrawingCache());
-                image.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                byte[] b = baos.toByteArray();
-                imgLocation = Base64.encodeToString(b, Base64.DEFAULT);
+//                Intent photoPickerIntent = new Intent(getContext(), this.getClass());
+//                photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
+//                photoPickerIntent.setType("image/*");
+//                startActivityForResult(photoPickerIntent,  1);
+//                startActivityForResult(Intent.createChooser(photoPickerIntent,"whatever you want",Intent.);
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+////                Bitmap image = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
+//                selectedImageView.setDrawingCacheEnabled(true);
+//                selectedImageView.buildDrawingCache();
+//                Bitmap image = Bitmap.createBitmap(selectedImageView.getDrawingCache());
+//                image.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                byte[] b = baos.toByteArray();
+//                imgLocation = Base64.encodeToString(b, Base64.DEFAULT);
 //                imgLocation = "gh";
             }
         });
@@ -187,20 +199,18 @@ public class createRes extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("*******************************");
-        System.out.println("*******************************");
-        System.out.println("yaay");
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            System.out.println("*******************************");
-            System.out.println("*******************************");
-            System.out.println("yaay222222222222");
-            try {
-                Uri selectedImage = data.getData();//InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-                InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
-                selectedImageView.setImageBitmap(BitmapFactory.decodeStream(imageStream));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+//            try {
+//                Uri selectedImage = data.getData();//InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+//                InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
+//                selectedImageView.setImageBitmap(BitmapFactory.decodeStream(imageStream));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+        if(requestCode == 100){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            selectedImageView.setImageBitmap(bitmap);
         }
 
 //        if (requestCode == camereaReq && resultCode == RESULT_OK) {
