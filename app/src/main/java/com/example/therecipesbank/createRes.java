@@ -2,6 +2,7 @@ package com.example.therecipesbank;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
@@ -40,15 +42,16 @@ import static android.app.Activity.RESULT_OK;
  * create an instance of this fragment.
  */
 public class createRes extends Fragment {
-    static String imgLocation="";
+    static String imgLocation = "";
+    private ImageView selectedImageView;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     // TODO: Rename parameter arguments, choose names that match
     private final int REQUEST_CODE = 1;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    private ImageView selectedImageView;
-
+    static ImageView uploadImg;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -82,12 +85,6 @@ public class createRes extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(), new String[]{
-                    Manifest.permission.CAMERA
-            }, 100);
-        }
     }
 
     @Override
@@ -109,8 +106,7 @@ public class createRes extends Fragment {
         Button postButton = view.findViewById(R.id.RConfirm);
         EditText recTitle = view.findViewById(R.id.RTitile);
         EditText recDesc = view.findViewById(R.id.RDesc);
-        ImageView uploadImg = view.findViewById(R.id.RImg);
-
+        ImageView uploadImg = (ImageView) view.findViewById(R.id.RImg);
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
@@ -151,33 +147,21 @@ public class createRes extends Fragment {
         uploadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 100);
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(Intent.createChooser(intent, RESULT_CODE;
 
-//                Intent photoPickerIntent = new Intent(getContext(), this.getClass());
-//                photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
-//                photoPickerIntent.setType("image/*");
-//                startActivityForResult(photoPickerIntent,  1);
-//                startActivityForResult(Intent.createChooser(photoPickerIntent,"whatever you want",Intent.);
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-////                Bitmap image = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
-//                selectedImageView.setDrawingCacheEnabled(true);
-//                selectedImageView.buildDrawingCache();
-//                Bitmap image = Bitmap.createBitmap(selectedImageView.getDrawingCache());
-//                image.compress(Bitmap.CompressFormat.PNG, 100, baos);
-//                byte[] b = baos.toByteArray();
-//                imgLocation = Base64.encodeToString(b, Base64.DEFAULT);
-//                imgLocation = "gh";
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                } catch (ActivityNotFoundException e) {
+                    // display error state to the user
+                }
+
             }
         });
 
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!recTitle.getText().toString().equals("")) {
+                if (!recTitle.getText().toString().equals("")) {
                     if (!recDesc.getText().toString().equals("")) {
                         if (!imgLocation.equals("")) {
                             MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), imgLocation, MainActivity.UserId);
@@ -189,7 +173,7 @@ public class createRes extends Fragment {
                     } else {
                         Toast.makeText(getContext(), "Please Write a Title", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Please Write a Description", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -198,26 +182,29 @@ public class createRes extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-//            try {
-//                Uri selectedImage = data.getData();//InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-//                InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
-//                selectedImageView.setImageBitmap(BitmapFactory.decodeStream(imageStream));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-        if(requestCode == 100){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            selectedImageView.setImageBitmap(bitmap);
+        System.out.println("******************************************");
+        System.out.println("******************************************");
+        System.out.println("on activity");
+        if (resultCode == RESULT_OK) {
+            System.out.println("******************************************");
+            System.out.println("******************************************");
+            System.out.println("on if1");
+            Bundle extras = data.getExtras();
+            System.out.println("on if2");
+            System.out.println(extras);
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            System.out.println("on if3");
+            uploadImg.setImageBitmap(imageBitmap);
+
+//            byte[] decodedString = Base64.decode("data",Base64.NO_WRAP);
+//            InputStream inputStream  = new ByteArrayInputStream(decodedString);
+//            Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
+//            uploadImg.setImageBitmap(bitmap);
+
+//            uploadImg.setImageBitmap(Bitmap.createScaledBitmap(bitmap, uploadImg.getWidth(), uploadImg.getHeight(), false));
+
+            System.out.println("on if4");
+
         }
-
-//        if (requestCode == camereaReq && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap image = (Bitmap)extras.get("data");
-//            selectedImageView.setImageBitmap(image);
-//        }
-
     }
 }
