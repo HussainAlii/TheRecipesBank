@@ -86,6 +86,7 @@ public class profile extends Fragment {
         Button trendsButton          = view.findViewById(R.id.profile_trendsButton);
         Button confirmButton         = view.findViewById(R.id.update_button);
         Button signOutButton         = view.findViewById(R.id.sigOutButton);
+        Button myDishesButton         = view.findViewById(R.id.myDishes_button);
 
 
 
@@ -154,6 +155,13 @@ public class profile extends Fragment {
                 //set new profile info here from the database
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        myDishesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profile_to_myPosts);
             }
         });
     }

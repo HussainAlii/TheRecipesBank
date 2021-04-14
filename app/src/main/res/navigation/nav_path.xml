@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_profile_to_myChefs"
             app:destination="@id/myChefs" />
+        <action
+            android:id="@+id/action_profile_to_myPosts"
+            app:destination="@id/myPosts" />
     </fragment>
     <fragment
         android:id="@+id/createRes"
@@ -106,5 +109,14 @@
         <action
             android:id="@+id/action_chefsRecList_to_myChefs"
             app:destination="@id/myChefs" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPosts"
+        android:name="com.example.therecipesbank.myPosts"
+        android:label="fragment_my_posts"
+        tools:layout="@layout/fragment_my_posts" >
+        <action
+            android:id="@+id/action_myPosts_to_profile"
+            app:destination="@id/profile" />
     </fragment>
 </navigation>
