@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemestyles">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".cameraImg"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".Home" />
         <activity android:name=".recipeView" />
         <activity android:name=".MainActivity">

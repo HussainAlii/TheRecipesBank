@@ -110,8 +110,8 @@ public class favList extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_favList_to_createRes);
-            }
+                Intent intent = new Intent(getContext(), cameraImg.class);
+                startActivity(intent);            }
         });
 
 //        view.findViewById(R.id.favButton).setOnClickListener(new View.OnClickListener() {

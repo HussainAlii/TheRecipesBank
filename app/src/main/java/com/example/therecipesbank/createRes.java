@@ -43,15 +43,13 @@ import static android.app.Activity.RESULT_OK;
  */
 public class createRes extends Fragment {
     static String imgLocation = "";
-    private ImageView selectedImageView;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    // TODO: Rename parameter arguments, choose names that match
     private final int REQUEST_CODE = 1;
+    private ImageView img = null;
+    static Bitmap bitmapImg = null;
+    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    static ImageView uploadImg;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -106,7 +104,8 @@ public class createRes extends Fragment {
         Button postButton = view.findViewById(R.id.RConfirm);
         EditText recTitle = view.findViewById(R.id.RTitile);
         EditText recDesc = view.findViewById(R.id.RDesc);
-        ImageView uploadImg = (ImageView) view.findViewById(R.id.RImg);
+        ImageView img = (ImageView) view.findViewById(R.id.RImg);
+        img.setImageBitmap(bitmapImg);
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
@@ -116,13 +115,6 @@ public class createRes extends Fragment {
                 navController.navigate(R.id.action_createRes_to_profile);
             }
         });
-
-//        view.findViewById(R.id.createButton).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_createRes_to_createRes);
-//            }
-//        });
 
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,19 +134,6 @@ public class createRes extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_createRes_to_popular);
-            }
-        });
-        uploadImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                try {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                } catch (ActivityNotFoundException e) {
-                    // display error state to the user
-                }
-
             }
         });
 
@@ -180,21 +159,4 @@ public class createRes extends Fragment {
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("yay");
-        if (resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            uploadImg.setImageBitmap(imageBitmap);
- 
-//            byte[] decodedString = Base64.decode("data",Base64.NO_WRAP);
-//            InputStream inputStream  = new ByteArrayInputStream(decodedString);
-//            Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
-//            uploadImg.setImageBitmap(bitmap);
-
-//            uploadImg.setImageBitmap(Bitmap.createScaledBitmap(bitmap, uploadImg.getWidth(), uploadImg.getHeight(), false));
-
-        }
-    }
 }

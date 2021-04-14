@@ -1,6 +1,8 @@
 package com.example.therecipesbank;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,11 +26,17 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Intent intent = getIntent();
+        final NavController navController = Navigation.findNavController(Home.this,
+                R.id.nav_host_fragment);
 //        if (intent.getSerializableExtra("isFirstLogin").toString().equals("true")) {
 //            Snackbar.make(findViewById(R.id.Activity2), "Welcome to The Recipes Bank Chef " + MainActivity.Username,
 //                    Snackbar.LENGTH_SHORT)
 //                    .show();
 //        }
+
+        if (intent.getSerializableExtra("isRecCreated").toString().equals("true")) {
+            navController.navigate(R.id.action_popular_to_createRes);
+        }
     }
 
 }

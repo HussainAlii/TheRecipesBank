@@ -1,6 +1,7 @@
 package com.example.therecipesbank;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -109,8 +110,8 @@ public class myChefs extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_myChefs_to_createRes);
-            }
+                Intent intent = new Intent(getContext(), cameraImg.class);
+                startActivity(intent);            }
         });
 
         favButton.setOnClickListener(new View.OnClickListener() {

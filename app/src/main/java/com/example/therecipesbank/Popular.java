@@ -112,7 +112,8 @@ public class Popular extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_popular_to_createRes);
+                Intent intent = new Intent(getContext(), cameraImg.class);
+                startActivity(intent);
             }
         });
 
