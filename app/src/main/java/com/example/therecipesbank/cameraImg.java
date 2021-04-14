@@ -19,14 +19,11 @@ public class cameraImg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_img);
-
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         } catch (ActivityNotFoundException e) {
-            System.out.println("--------------");
             System.out.println(e);
-            System.out.println("--------------");
         }
     }
 
@@ -44,6 +41,7 @@ public class cameraImg extends AppCompatActivity {
             Intent intent = new Intent(cameraImg.this, Home.class);
             intent.putExtra("isRecCreated",false);
             startActivity(intent);
+            finish();
         }
     }
 }
