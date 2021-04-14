@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -67,7 +68,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TITLE + " TEXT,"
                 + DESC + " TEXT,"
-                + IMG +" TEXT,"
+                + IMG +" BLOB,"
                 + Likes +" INTEGER,"
                 + USER_ID +" INTEGER,"+
                 " FOREIGN KEY ("+USER_ID+") REFERENCES "+ USER_TABLE+"("+KEY_ID+")"+
@@ -120,7 +121,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     
-    public void insertIntoPosts(String title, String desc, String img, int userId){
+    public void insertIntoPosts(String title, String desc, int userId,  byte[] img){
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys
@@ -217,7 +218,7 @@ public class DbHandler extends SQLiteOpenHelper {
             postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
-                    cursor.getString((cursor.getColumnIndex(IMG))),
+                    cursor.getBlob((cursor.getColumnIndex(IMG))),
                     cursor.getInt((cursor.getColumnIndex(USER_ID))),
                     cursor.getString((cursor.getColumnIndex(KEY_Username))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
@@ -244,7 +245,7 @@ public class DbHandler extends SQLiteOpenHelper {
             postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
-                    cursor.getString((cursor.getColumnIndex(IMG))),
+                    cursor.getBlob((cursor.getColumnIndex(IMG))),
                     cursor.getInt((cursor.getColumnIndex(USER_ID))),
                     cursor.getString((cursor.getColumnIndex(KEY_Username))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
@@ -278,7 +279,7 @@ public class DbHandler extends SQLiteOpenHelper {
             postList.add(new post(cursor.getString((cursor.getColumnIndex(POST_ID))),
                     cursor.getString((cursor.getColumnIndex(TITLE))),
                     cursor.getString((cursor.getColumnIndex(DESC))),
-                    cursor.getString((cursor.getColumnIndex(IMG))),
+                    cursor.getBlob((cursor.getColumnIndex(IMG))),
                     cursor.getInt((cursor.getColumnIndex(USER_ID))),
                     cursor.getInt((cursor.getColumnIndex(Likes)))
             ));

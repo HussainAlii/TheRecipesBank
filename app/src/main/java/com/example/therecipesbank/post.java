@@ -4,12 +4,12 @@ public class post {
     private String title       = "";
     private String post_id     = "";
     private String description = "";
-    private String img         = "";
+    private byte img[]         = null;
     private String username    = "";
     private int user_id        = -1;
     private int likes          = 0;
 
-    public post( String post_id, String title, String description, String img, int user_id,String username, int likes) {
+    public post( String post_id, String title, String description, byte img[], int user_id,String username, int likes) {
         this.title = title;
         this.post_id = post_id;
         this.description = description;
@@ -19,7 +19,7 @@ public class post {
         this.username = username;
     }
 
-    public post(String post_id, String title, String description, String img, int user_id, int likes) {
+    public post(String post_id, String title, String description, byte img[], int user_id, int likes) {
         this.title = title;
         this.post_id = post_id;
         this.description = description;
@@ -72,11 +72,11 @@ public class post {
         this.description = description;
     }
 
-    public String getImg() {
+    public byte[] getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(byte[] img) {
         this.img = img;
     }
 

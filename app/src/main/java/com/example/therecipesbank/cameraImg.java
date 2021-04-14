@@ -39,6 +39,7 @@ public class cameraImg extends AppCompatActivity {
             createRes.bitmapImg = imageBitmap;
             Intent intent = new Intent(cameraImg.this, Home.class);
             intent.putExtra("isRecCreated",true);
+
             startActivity(intent);
         }
     }

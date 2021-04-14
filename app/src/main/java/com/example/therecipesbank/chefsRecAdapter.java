@@ -2,6 +2,8 @@ package com.example.therecipesbank;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,14 +41,8 @@ class chefsRecAdapter extends ArrayAdapter<post> {
         // 11. Set the image resource to the celestial object image
 
         ImageView imageView = (ImageView) theView.findViewById(R.id.imageView1);
-//        String imgLocation = postsList.get(position).getImg();
-//        if (!imgLocation.equals("")){
-//            int imgResource = activity.getImgLocation(postsList.get(position).getImg());
-//            if (imgResource != 0)
-//                imageView.setImageResource(imgResource);
-//        }
-//        else {
-            imageView.setImageResource(R.drawable.pizza);
+        Bitmap bitmapImg = BitmapFactory.decodeByteArray(postsList.get(position).getImg(), 0, postsList.get(position).getImg().length);
+        imageView.setImageBitmap(bitmapImg);
 //        }
         return theView;
     }

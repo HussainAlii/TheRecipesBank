@@ -42,10 +42,9 @@ import static android.app.Activity.RESULT_OK;
  * create an instance of this fragment.
  */
 public class createRes extends Fragment {
-    static String imgLocation = "";
-    private final int REQUEST_CODE = 1;
     private ImageView img = null;
     static Bitmap bitmapImg = null;
+    private byte byteImg []=null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -104,8 +103,15 @@ public class createRes extends Fragment {
         Button postButton = view.findViewById(R.id.RConfirm);
         EditText recTitle = view.findViewById(R.id.RTitile);
         EditText recDesc = view.findViewById(R.id.RDesc);
-        ImageView img = (ImageView) view.findViewById(R.id.RImg);
+
+        img = (ImageView) view.findViewById(R.id.RImg);
         img.setImageBitmap(bitmapImg);
+
+        //convert to byte
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        bitmapImg.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+        byteImg = blob.toByteArray();
+
         final NavController navController = Navigation.findNavController(getActivity(),
                 R.id.nav_host_fragment);
 
@@ -142,13 +148,9 @@ public class createRes extends Fragment {
             public void onClick(View v) {
                 if (!recTitle.getText().toString().equals("")) {
                     if (!recDesc.getText().toString().equals("")) {
-                        if (!imgLocation.equals("")) {
-                            MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), imgLocation, MainActivity.UserId);
-                            Toast.makeText(getContext(), "Your recipe has been posted ;)", Toast.LENGTH_LONG).show();
-                            navController.navigate(R.id.action_createRes_to_popular);
-                        } else {
-                            Toast.makeText(getContext(), "Please Select a Picture", Toast.LENGTH_SHORT).show();
-                        }
+                        MainActivity.dbHandler.insertIntoPosts(recTitle.getText().toString(), recDesc.getText().toString(), MainActivity.UserId, byteImg);
+                        Toast.makeText(getContext(), "Your recipe has been posted ;)", Toast.LENGTH_LONG).show();
+                        navController.navigate(R.id.action_createRes_to_popular);
                     } else {
                         Toast.makeText(getContext(), "Please Write a Title", Toast.LENGTH_SHORT).show();
                     }

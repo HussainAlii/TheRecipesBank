@@ -35,6 +35,7 @@ public class Home extends AppCompatActivity {
 //        }
 
         if (intent.getSerializableExtra("isRecCreated").toString().equals("true")) {
+            intent.putExtra("isRecCreated",false);
             navController.navigate(R.id.action_popular_to_createRes);
         }
     }
