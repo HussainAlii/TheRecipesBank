@@ -182,28 +182,18 @@ public class createRes extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("******************************************");
-        System.out.println("******************************************");
-        System.out.println("on activity");
+        System.out.println("yay");
         if (resultCode == RESULT_OK) {
-            System.out.println("******************************************");
-            System.out.println("******************************************");
-            System.out.println("on if1");
             Bundle extras = data.getExtras();
-            System.out.println("on if2");
-            System.out.println(extras);
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            System.out.println("on if3");
             uploadImg.setImageBitmap(imageBitmap);
-
+ 
 //            byte[] decodedString = Base64.decode("data",Base64.NO_WRAP);
 //            InputStream inputStream  = new ByteArrayInputStream(decodedString);
 //            Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
 //            uploadImg.setImageBitmap(bitmap);
 
 //            uploadImg.setImageBitmap(Bitmap.createScaledBitmap(bitmap, uploadImg.getWidth(), uploadImg.getHeight(), false));
-
-            System.out.println("on if4");
 
         }
     }

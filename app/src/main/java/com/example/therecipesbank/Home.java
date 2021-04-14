@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,4 +30,5 @@ public class Home extends AppCompatActivity {
 //                    .show();
 //        }
     }
+
 }
