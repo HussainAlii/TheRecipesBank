@@ -107,9 +107,9 @@ public class createRes extends Fragment {
         img = (ImageView) view.findViewById(R.id.RImg);
         img.setImageBitmap(bitmapImg);
 
-        //convert to byte
+        //convert from bitmaps to byte arr
         ByteArrayOutputStream blob = new ByteArrayOutputStream();
-        bitmapImg.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+        bitmapImg.compress(Bitmap.CompressFormat.PNG, 0, blob);
         byteImg = blob.toByteArray();
 
         final NavController navController = Navigation.findNavController(getActivity(),
