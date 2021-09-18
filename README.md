@@ -1,0 +1,2 @@
+# TheRecipesBank
+This app will be a means to learn and share different recipes. First of all, users can add new dishes along with the way of how to make it step by step. Also, users can view the latest cooking trends. Furthermore, users can see what other people had cooked, and interact with it. For example, sharing favorite food, liking with one another. Finally, users can add their favorite dishes in their bookmark.
